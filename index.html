@@ -5,22 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#1a1a2e">
+  <meta name="theme-color" content="#c9a227">
   <title>Hindi for Family</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap');
+    @import url('https://fonts.cdnfonts.com/css/opendyslexic');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&display=swap');
     
     :root {
-      --bg-deep: #0f0f1a;
-      --bg-card: #1a1a2e;
-      --bg-card-hover: #252542;
-      --accent-warm: #ff6b35;
-      --accent-gold: #f7c94b;
-      --accent-coral: #ff8a5c;
-      --text-primary: #ffffff;
-      --text-secondary: #a0a0b8;
-      --text-muted: #6b6b80;
-      --success: #4ade80;
+      /* Metallic Gold Theme */
+      --bg-gold-light: #f5e6a3;
+      --bg-gold-mid: #d4af37;
+      --bg-gold-dark: #b8960c;
+      --bg-card: linear-gradient(145deg, #e8d48a, #c9a227);
+      --bg-card-solid: #d4b84a;
+      --bg-card-hover: #e0c555;
+      --accent-burgundy: #722f37;
+      --accent-dark: #4a1c20;
+      --text-primary: #2d1810;
+      --text-secondary: #4a3728;
+      --text-muted: #6b5344;
+      --success: #2d5016;
+      --success-bg: #8fbc5a;
       --radius: 16px;
       --radius-sm: 10px;
     }
@@ -33,12 +38,35 @@
     }
     
     body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg-deep);
+      font-family: 'OpenDyslexic', 'OpenDyslexic3', sans-serif;
+      background: linear-gradient(135deg, #f5e6a3 0%, #d4af37 30%, #c9a227 50%, #b8960c 70%, #d4af37 100%);
+      background-attachment: fixed;
       color: var(--text-primary);
       min-height: 100vh;
-      line-height: 1.5;
+      line-height: 1.6;
       overflow-x: hidden;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+    }
+    
+    /* Add metallic sheen effect */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 2px,
+          rgba(255,255,255,0.03) 2px,
+          rgba(255,255,255,0.03) 4px
+        );
+      pointer-events: none;
+      z-index: 0;
     }
     
     .hindi {
@@ -46,53 +74,43 @@
     }
     
     .app {
-      max-width: 480px;
+      max-width: 500px;
       margin: 0 auto;
       padding: 20px;
       padding-bottom: 100px;
+      position: relative;
+      z-index: 1;
     }
     
-    /* Header */
     .header {
       text-align: center;
       padding: 30px 0 40px;
       position: relative;
     }
     
-    .header::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    
     .logo {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 700;
-      background: linear-gradient(135deg, var(--accent-warm), var(--accent-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent-burgundy);
+      text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
       margin-bottom: 8px;
     }
     
     .tagline {
       color: var(--text-secondary);
       font-size: 0.95rem;
-      font-weight: 300;
     }
     
-    /* Progress Bar */
     .progress-container {
       background: var(--bg-card);
       border-radius: var(--radius);
       padding: 20px;
       margin-bottom: 30px;
+      box-shadow: 
+        inset 2px 2px 4px rgba(255,255,255,0.3),
+        inset -2px -2px 4px rgba(0,0,0,0.1),
+        3px 3px 8px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.2);
     }
     
     .progress-header {
@@ -103,68 +121,97 @@
     }
     
     .progress-label {
-      font-weight: 500;
+      font-weight: 600;
       font-size: 0.9rem;
+      color: var(--text-primary);
     }
     
     .progress-stats {
-      color: var(--accent-gold);
-      font-weight: 600;
+      color: var(--accent-burgundy);
+      font-weight: 700;
       font-size: 0.9rem;
     }
     
     .progress-bar {
-      height: 8px;
-      background: var(--bg-deep);
-      border-radius: 4px;
+      height: 10px;
+      background: rgba(0,0,0,0.15);
+      border-radius: 5px;
       overflow: hidden;
+      box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2);
     }
     
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--accent-warm), var(--accent-gold));
-      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent-burgundy), var(--accent-dark));
+      border-radius: 5px;
       transition: width 0.5s ease;
     }
     
-    /* Week Tabs */
+    .week-tabs-wrapper {
+      position: relative;
+      margin-bottom: 24px;
+    }
+    
     .week-tabs {
       display: flex;
       gap: 8px;
-      margin-bottom: 24px;
       overflow-x: auto;
-      padding-bottom: 8px;
-      scrollbar-width: none;
+      overflow-y: hidden;
+      padding: 4px 4px 16px 4px;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
     
     .week-tabs::-webkit-scrollbar {
-      display: none;
+      height: 8px;
+    }
+    
+    .week-tabs::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.1);
+      border-radius: 4px;
+    }
+    
+    .week-tabs::-webkit-scrollbar-thumb {
+      background: var(--accent-burgundy);
+      border-radius: 4px;
+    }
+    
+    .scroll-hint {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: -8px;
+      margin-bottom: 16px;
+      font-weight: 600;
     }
     
     .week-tab {
-      flex-shrink: 0;
-      padding: 10px 18px;
+      flex: 0 0 auto;
+      padding: 12px 20px;
       background: var(--bg-card);
-      border: none;
-      border-radius: 20px;
-      color: var(--text-secondary);
-      font-family: inherit;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 25px;
+      color: var(--text-primary);
+      font-family: 'OpenDyslexic', sans-serif;
       font-size: 0.85rem;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
+      white-space: nowrap;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
     }
     
     .week-tab:hover {
       background: var(--bg-card-hover);
+      transform: translateY(-2px);
     }
     
     .week-tab.active {
-      background: linear-gradient(135deg, var(--accent-warm), var(--accent-coral));
-      color: white;
+      background: linear-gradient(145deg, var(--accent-burgundy), var(--accent-dark));
+      color: #f5e6a3;
+      border-color: var(--accent-dark);
     }
     
-    /* Day Cards */
     .days-grid {
       display: grid;
       gap: 12px;
@@ -179,20 +226,27 @@
       gap: 16px;
       cursor: pointer;
       transition: all 0.2s;
-      border: 1px solid transparent;
+      border: 2px solid rgba(255,255,255,0.2);
+      box-shadow: 
+        inset 1px 1px 3px rgba(255,255,255,0.3),
+        3px 3px 8px rgba(0,0,0,0.15);
     }
     
     .day-card:hover {
       background: var(--bg-card-hover);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 
+        inset 1px 1px 3px rgba(255,255,255,0.3),
+        5px 5px 15px rgba(0,0,0,0.2);
     }
     
     .day-card.completed {
-      border-color: rgba(74, 222, 128, 0.3);
+      border-color: var(--success);
+      background: linear-gradient(145deg, #c9d4a0, #a8b878);
     }
     
     .day-card.locked {
-      opacity: 0.5;
+      opacity: 0.6;
       cursor: not-allowed;
     }
     
@@ -202,14 +256,15 @@
     }
     
     .day-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--bg-deep);
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.4);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
+      box-shadow: inset 1px 1px 2px rgba(255,255,255,0.5);
     }
     
     .day-info {
@@ -222,39 +277,41 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 2px;
+      font-weight: 600;
     }
     
     .day-title {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 1rem;
+      color: var(--text-primary);
     }
     
     .day-status {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: bold;
     }
     
     .day-status.completed {
-      background: var(--success);
-      color: var(--bg-deep);
+      background: var(--success-bg);
+      color: var(--success);
     }
     
     .day-status.current {
-      background: var(--accent-warm);
-      color: white;
+      background: var(--accent-burgundy);
+      color: #f5e6a3;
     }
     
     .day-status.locked {
-      background: var(--bg-deep);
+      background: rgba(0,0,0,0.1);
       color: var(--text-muted);
     }
     
-    /* Lesson View */
     .lesson-view {
       display: none;
     }
@@ -276,15 +333,16 @@
       background: none;
       border: none;
       color: var(--text-secondary);
-      font-family: inherit;
+      font-family: 'OpenDyslexic', sans-serif;
       font-size: 0.95rem;
+      font-weight: 600;
       cursor: pointer;
       padding: 10px 0;
       margin-bottom: 20px;
     }
     
     .back-btn:hover {
-      color: var(--text-primary);
+      color: var(--accent-burgundy);
     }
     
     .lesson-header {
@@ -298,30 +356,31 @@
     }
     
     .lesson-title {
-      font-size: 1.75rem;
+      font-size: 1.6rem;
       font-weight: 700;
       margin-bottom: 8px;
+      color: var(--accent-burgundy);
     }
     
     .lesson-category {
-      color: var(--accent-gold);
+      color: var(--text-secondary);
       font-size: 0.85rem;
-      font-weight: 500;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
     
-    /* Phrase Cards */
     .phrases-section {
       margin-bottom: 30px;
     }
     
     .section-title {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 16px;
+      font-weight: 700;
     }
     
     .phrase-card {
@@ -331,6 +390,10 @@
       margin-bottom: 12px;
       cursor: pointer;
       transition: all 0.2s;
+      border: 2px solid rgba(255,255,255,0.2);
+      box-shadow: 
+        inset 1px 1px 3px rgba(255,255,255,0.3),
+        3px 3px 8px rgba(0,0,0,0.15);
     }
     
     .phrase-card:hover {
@@ -349,31 +412,33 @@
     }
     
     .phrase-hindi {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 600;
       margin-bottom: 4px;
+      color: var(--text-primary);
     }
     
     .phrase-roman {
-      color: var(--accent-coral);
+      color: var(--accent-burgundy);
       font-size: 1.1rem;
-      font-weight: 500;
+      font-weight: 600;
     }
     
     .phrase-speak {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, var(--accent-warm), var(--accent-coral));
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(145deg, var(--accent-burgundy), var(--accent-dark));
       border: none;
       border-radius: 50%;
-      color: white;
-      font-size: 1.2rem;
+      color: #f5e6a3;
+      font-size: 1.3rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
       transition: transform 0.2s;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
     }
     
     .phrase-speak:hover {
@@ -385,7 +450,7 @@
     }
     
     .phrase-english {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--text-secondary);
       margin-bottom: 8px;
     }
@@ -406,62 +471,66 @@
     
     .phrase-context {
       font-size: 0.8rem;
-      color: var(--accent-gold);
-      background: rgba(247, 201, 75, 0.1);
-      padding: 4px 10px;
+      color: var(--accent-dark);
+      background: rgba(255,255,255,0.5);
+      padding: 4px 12px;
       border-radius: 12px;
+      font-weight: 600;
     }
     
-    /* Fun Fact */
     .fun-fact {
-      background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(247,201,75,0.1));
+      background: linear-gradient(145deg, #e8d48a, #d4b84a);
       border-radius: var(--radius);
       padding: 20px;
       margin-bottom: 30px;
-      border-left: 3px solid var(--accent-gold);
+      border-left: 4px solid var(--accent-burgundy);
+      box-shadow: 3px 3px 8px rgba(0,0,0,0.15);
     }
     
     .fun-fact-label {
-      font-size: 0.75rem;
-      color: var(--accent-gold);
+      font-size: 0.8rem;
+      color: var(--accent-burgundy);
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 6px;
+      font-weight: 700;
     }
     
     .fun-fact-text {
       color: var(--text-primary);
       font-size: 0.95rem;
-      line-height: 1.6;
+      line-height: 1.7;
     }
     
-    /* Practice Challenge */
     .practice-box {
       background: var(--bg-card);
       border-radius: var(--radius);
       padding: 20px;
       margin-bottom: 30px;
       text-align: center;
+      box-shadow: 
+        inset 1px 1px 3px rgba(255,255,255,0.3),
+        3px 3px 8px rgba(0,0,0,0.15);
     }
     
     .practice-label {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 10px;
+      font-weight: 700;
     }
     
     .practice-text {
-      font-size: 1.1rem;
-      font-weight: 500;
+      font-size: 1.05rem;
+      font-weight: 600;
       color: var(--text-primary);
     }
     
-    /* Quiz Section */
     .quiz-section {
       margin-bottom: 30px;
     }
@@ -470,6 +539,9 @@
       background: var(--bg-card);
       border-radius: var(--radius);
       padding: 24px;
+      box-shadow: 
+        inset 1px 1px 3px rgba(255,255,255,0.3),
+        3px 3px 8px rgba(0,0,0,0.15);
     }
     
     .quiz-progress {
@@ -480,24 +552,25 @@
     
     .quiz-dot {
       flex: 1;
-      height: 4px;
-      background: var(--bg-deep);
-      border-radius: 2px;
+      height: 6px;
+      background: rgba(0,0,0,0.15);
+      border-radius: 3px;
     }
     
     .quiz-dot.answered {
-      background: var(--success);
+      background: var(--success-bg);
     }
     
     .quiz-dot.current {
-      background: var(--accent-warm);
+      background: var(--accent-burgundy);
     }
     
     .quiz-question {
       font-size: 1.2rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 8px;
       text-align: center;
+      color: var(--text-primary);
     }
     
     .quiz-prompt {
@@ -513,11 +586,11 @@
     }
     
     .quiz-option {
-      background: var(--bg-deep);
-      border: 2px solid transparent;
+      background: rgba(255,255,255,0.4);
+      border: 2px solid rgba(0,0,0,0.1);
       border-radius: var(--radius-sm);
       padding: 16px;
-      font-family: inherit;
+      font-family: 'OpenDyslexic', sans-serif;
       font-size: 1rem;
       color: var(--text-primary);
       cursor: pointer;
@@ -526,22 +599,23 @@
     }
     
     .quiz-option:hover:not(:disabled) {
-      border-color: var(--accent-warm);
+      border-color: var(--accent-burgundy);
+      background: rgba(255,255,255,0.6);
     }
     
     .quiz-option.selected {
-      border-color: var(--accent-warm);
-      background: rgba(255,107,53,0.1);
+      border-color: var(--accent-burgundy);
+      background: rgba(114, 47, 55, 0.1);
     }
     
     .quiz-option.correct {
       border-color: var(--success);
-      background: rgba(74,222,128,0.1);
+      background: rgba(45, 80, 22, 0.15);
     }
     
     .quiz-option.incorrect {
-      border-color: #ef4444;
-      background: rgba(239,68,68,0.1);
+      border-color: #b91c1c;
+      background: rgba(185, 28, 28, 0.1);
     }
     
     .quiz-option:disabled {
@@ -554,12 +628,9 @@
     }
     
     .quiz-score {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      background: linear-gradient(135deg, var(--accent-warm), var(--accent-gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent-burgundy);
     }
     
     .quiz-message {
@@ -567,27 +638,27 @@
       margin-top: 8px;
     }
     
-    /* Buttons */
     .btn {
       width: 100%;
       padding: 16px;
       border: none;
       border-radius: var(--radius-sm);
-      font-family: inherit;
+      font-family: 'OpenDyslexic', sans-serif;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
     }
     
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-warm), var(--accent-coral));
-      color: white;
+      background: linear-gradient(145deg, var(--accent-burgundy), var(--accent-dark));
+      color: #f5e6a3;
+      box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
     }
     
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(255,107,53,0.3);
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
     }
     
     .btn-primary:disabled {
@@ -600,18 +671,17 @@
     .btn-secondary {
       background: var(--bg-card);
       color: var(--text-primary);
+      border: 2px solid rgba(0,0,0,0.1);
     }
     
     .btn-secondary:hover {
       background: var(--bg-card-hover);
     }
     
-    /* Complete Lesson Button */
     .complete-btn {
       margin-top: 20px;
     }
     
-    /* Tab Content */
     .tab-content {
       display: none;
     }
@@ -620,12 +690,11 @@
       display: block;
     }
     
-    /* Lesson Tabs */
     .lesson-tabs {
       display: flex;
       gap: 0;
       margin-bottom: 24px;
-      background: var(--bg-card);
+      background: rgba(0,0,0,0.1);
       border-radius: var(--radius);
       padding: 4px;
     }
@@ -637,19 +706,19 @@
       border: none;
       border-radius: var(--radius-sm);
       color: var(--text-secondary);
-      font-family: inherit;
+      font-family: 'OpenDyslexic', sans-serif;
       font-size: 0.9rem;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
     }
     
     .lesson-tab.active {
-      background: var(--bg-deep);
+      background: var(--bg-card);
       color: var(--text-primary);
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
     }
     
-    /* Home View */
     .home-view {
       display: block;
     }
@@ -658,22 +727,21 @@
       display: none;
     }
     
-    /* Version info */
     .version-info {
       text-align: center;
       padding: 20px;
       color: var(--text-muted);
       font-size: 0.75rem;
+      font-weight: 600;
     }
     
-    /* Responsive */
     @media (max-width: 380px) {
       .app {
         padding: 16px;
       }
       
       .phrase-hindi {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
       }
       
       .phrase-roman {
@@ -684,31 +752,32 @@
 </head>
 <body>
   <div class="app" id="app">
-    <!-- Home View -->
     <div class="home-view" id="homeView">
       <header class="header">
         <h1 class="logo">Hindi for Family</h1>
-        <p class="tagline" id="tagline">30 days to conversation</p>
+        <p class="tagline" id="tagline">60 days to confident conversation</p>
       </header>
       
       <div class="progress-container">
         <div class="progress-header">
           <span class="progress-label">Your Progress</span>
-          <span class="progress-stats" id="progressStats">0/30 days</span>
+          <span class="progress-stats" id="progressStats">0/65 days</span>
         </div>
         <div class="progress-bar">
           <div class="progress-fill" id="progressFill" style="width: 0%"></div>
         </div>
       </div>
       
-      <div class="week-tabs" id="weekTabs"></div>
+      <div class="week-tabs-wrapper">
+        <div class="week-tabs" id="weekTabs"></div>
+        <div class="scroll-hint" id="scrollHint">← Swipe for Weeks 6-10 →</div>
+      </div>
       
       <div class="days-grid" id="daysGrid"></div>
       
       <div class="version-info" id="versionInfo"></div>
     </div>
     
-    <!-- Lesson View -->
     <div class="lesson-view" id="lessonView">
       <button class="back-btn" id="backBtn">
         <span>←</span> Back to lessons
@@ -758,1222 +827,119 @@
   </div>
 
   <script>
-    // ==========================================
-    // COURSE CONFIGURATION
-    // ==========================================
-    
-    const COURSE_VERSION = "2.0.0";
+    const COURSE_VERSION = "2.2.0";
     const STORAGE_KEY = "hindiFamilyCourse";
     
-    // ==========================================
-    // LESSON DATABASE
-    // Each lesson has a unique ID that NEVER changes
-    // ==========================================
-    
     const lessonDatabase = {
-      // ===== WEEK 1: Foundations =====
-      "w1-greetings-hello": {
-        id: "w1-greetings-hello",
-        title: "Hello & Goodbye",
-        category: "Greetings",
-        icon: "👋",
-        phrases: [
-          { hindi: "नमस्ते", roman: "Namaste", english: "Hello / Goodbye", pronunciation: "nuh-MUS-tay", context: "Any time of day!", speakText: "Namaste" },
-          { hindi: "नमस्कार", roman: "Namaskar", english: "Respectful Hello", pronunciation: "nuh-mus-KAAR", context: "For elders", speakText: "Namaskar" },
-          { hindi: "फिर मिलेंगे", roman: "Phir milenge", english: "See you later", pronunciation: "fir mi-LEN-gay", context: "When leaving", speakText: "Phir milenge" }
-        ],
-        funFact: "Namaste means 'I bow to you' — it shows respect and is used for both hello AND goodbye!",
-        practice: "Say Namaste to everyone at home today, with your hands pressed together!"
-      },
-      
-      "w1-greetings-howareyou": {
-        id: "w1-greetings-howareyou",
-        title: "How Are You?",
-        category: "Greetings",
-        icon: "💬",
-        phrases: [
-          { hindi: "आप कैसे हैं?", roman: "Aap kaise hain?", english: "How are you? (respectful)", pronunciation: "aap KAY-say hayn", context: "For elders", speakText: "Aap kaise hain" },
-          { hindi: "तुम कैसे हो?", roman: "Tum kaise ho?", english: "How are you? (friendly)", pronunciation: "tum KAY-say ho", context: "For friends", speakText: "Tum kaise ho" },
-          { hindi: "मैं ठीक हूँ", roman: "Main theek hoon", english: "I am fine", pronunciation: "mayn teek hoon", context: "Common reply", speakText: "Main theek hoon" },
-          { hindi: "बहुत अच्छा", roman: "Bahut accha", english: "Very good", pronunciation: "ba-HOOT uch-CHAA", context: "Great response!", speakText: "Bahut accha" }
-        ],
-        funFact: "Hindi has formal (aap) and informal (tum) versions of 'you' — use 'aap' with elders to show respect!",
-        practice: "Ask a relative 'Aap kaise hain?' and respond with 'Main theek hoon'!"
-      },
-      
-      "w1-manners-thanks": {
-        id: "w1-manners-thanks",
-        title: "Please & Thank You",
-        category: "Manners",
-        icon: "🙏",
-        phrases: [
-          { hindi: "शुक्रिया", roman: "Shukriya", english: "Thank you", pronunciation: "shuk-REE-ya", context: "Everyday thanks", speakText: "Shukriya" },
-          { hindi: "धन्यवाद", roman: "Dhanyavaad", english: "Thank you (formal)", pronunciation: "dun-ya-VAAD", context: "More formal", speakText: "Dhanyavaad" },
-          { hindi: "कृपया", roman: "Kripaya", english: "Please", pronunciation: "kri-PU-ya", context: "Being polite", speakText: "Kripaya" }
-        ],
-        funFact: "'Shukriya' comes from Arabic and is commonly used across India. 'Dhanyavaad' is the Sanskrit-origin word!",
-        practice: "Use Shukriya at least 5 times today when someone helps you!"
-      },
-      
-      "w1-numbers-1to5": {
-        id: "w1-numbers-1to5",
-        title: "Numbers 1-5",
-        category: "Numbers",
-        icon: "🔢",
-        phrases: [
-          { hindi: "एक", roman: "Ek", english: "One (1)", pronunciation: "ek", context: "1", speakText: "Ek" },
-          { hindi: "दो", roman: "Do", english: "Two (2)", pronunciation: "doh", context: "2", speakText: "Do" },
-          { hindi: "तीन", roman: "Teen", english: "Three (3)", pronunciation: "teen", context: "3", speakText: "Teen" },
-          { hindi: "चार", roman: "Chaar", english: "Four (4)", pronunciation: "chaar", context: "4", speakText: "Chaar" },
-          { hindi: "पाँच", roman: "Paanch", english: "Five (5)", pronunciation: "paanch", context: "5", speakText: "Paanch" }
-        ],
-        funFact: "Hindi numbers are used all over India, even in regions that speak other languages!",
-        practice: "Count your fingers in Hindi: Ek, do, teen, chaar, paanch!"
-      },
-      
-      "w1-numbers-6to10": {
-        id: "w1-numbers-6to10",
-        title: "Numbers 6-10",
-        category: "Numbers",
-        icon: "🔢",
-        phrases: [
-          { hindi: "छह", roman: "Chhe", english: "Six (6)", pronunciation: "cheh", context: "6", speakText: "Chhe" },
-          { hindi: "सात", roman: "Saat", english: "Seven (7)", pronunciation: "saat", context: "7", speakText: "Saat" },
-          { hindi: "आठ", roman: "Aath", english: "Eight (8)", pronunciation: "aath", context: "8", speakText: "Aath" },
-          { hindi: "नौ", roman: "Nau", english: "Nine (9)", pronunciation: "now", context: "9", speakText: "Nau" },
-          { hindi: "दस", roman: "Das", english: "Ten (10)", pronunciation: "dus", context: "10", speakText: "Das" }
-        ],
-        funFact: "Now you can count to 10! 'Das' means ten — you might hear 'das minute' (10 minutes) a lot!",
-        practice: "Count backwards from das to ek. Then count your toes!"
-      },
-      
-      "w1-identity-aboutme": {
-        id: "w1-identity-aboutme",
-        title: "About Me",
-        category: "Identity",
-        icon: "🙋",
-        phrases: [
-          { hindi: "मेरा नाम ___ है", roman: "Mera naam ___ hai", english: "My name is ___", pronunciation: "MAY-ra naam ___ hay", context: "Say your name!", speakText: "Mera naam Rahul hai" },
-          { hindi: "मैं ___ साल का हूँ", roman: "Main ___ saal ka hoon", english: "I am ___ years old (boy)", pronunciation: "mayn ___ saal kaa hoon", context: "Use a number!", speakText: "Main saat saal ka hoon" },
-          { hindi: "मैं ___ साल की हूँ", roman: "Main ___ saal ki hoon", english: "I am ___ years old (girl)", pronunciation: "mayn ___ saal kee hoon", context: "Use a number!", speakText: "Main saat saal ki hoon" },
-          { hindi: "मैं खुश हूँ", roman: "Main khush hoon", english: "I am happy", pronunciation: "mayn khoosh hoon", context: "Express feelings!", speakText: "Main khush hoon" }
-        ],
-        funFact: "Hindi changes some words for boys (ka) and girls (ki). It's like a built-in 'he/she' in the word!",
-        practice: "Tell a relative: 'Mera naam ___ hai. Main ___ saal ka/ki hoon.' using a number you learned!"
-      },
-      
-      "w1-review": {
-        id: "w1-review",
-        title: "Week 1 Review",
-        category: "Review",
-        icon: "⭐",
-        phrases: [
-          { hindi: "नमस्ते, आप कैसे हैं?", roman: "Namaste, aap kaise hain?", english: "Hello, how are you?", pronunciation: "nuh-MUS-tay, aap KAY-say hayn", context: "Full greeting!", speakText: "Namaste, aap kaise hain" },
-          { hindi: "मैं ठीक हूँ, शुक्रिया", roman: "Main theek hoon, shukriya", english: "I am fine, thank you", pronunciation: "mayn teek hoon, shuk-REE-ya", context: "Polite response", speakText: "Main theek hoon, shukriya" },
-          { hindi: "एक, दो, तीन, चार, पाँच", roman: "Ek, do, teen, chaar, paanch", english: "1, 2, 3, 4, 5", pronunciation: "ek, doh, teen, chaar, paanch", context: "Count them!", speakText: "Ek, do, teen, chaar, paanch" }
-        ],
-        funFact: "You've learned greetings, manners, numbers 1-10, and how to introduce yourself! That's over 20 phrases!",
-        practice: "Have a mini conversation with a relative using everything from this week!"
-      },
-      
-      // ===== WEEK 2: Family & Basics =====
-      "w2-basics-yesno": {
-        id: "w2-basics-yesno",
-        title: "Yes, No & Sorry",
-        category: "Basics",
-        icon: "✅",
-        phrases: [
-          { hindi: "हाँ", roman: "Haan", english: "Yes", pronunciation: "haahn", context: "Simple yes", speakText: "Haan" },
-          { hindi: "जी हाँ", roman: "Ji haan", english: "Yes (respectful)", pronunciation: "jee haahn", context: "For elders", speakText: "Ji haan" },
-          { hindi: "नहीं", roman: "Nahin", english: "No", pronunciation: "na-HEEN", context: "Simple no", speakText: "Nahin" },
-          { hindi: "जी नहीं", roman: "Ji nahin", english: "No (respectful)", pronunciation: "jee na-HEEN", context: "For elders", speakText: "Ji nahin" },
-          { hindi: "माफ़ कीजिए", roman: "Maaf kijiye", english: "Sorry / Excuse me", pronunciation: "maaf KEE-ji-yay", context: "Very polite", speakText: "Maaf kijiye" }
-        ],
-        funFact: "'Ji' is a magic word in Hindi — add it to almost anything to be more polite and respectful!",
-        practice: "Practice saying 'Ji haan' and 'Ji nahin' when someone asks you something today!"
-      },
-      
-      "w2-family-parents": {
-        id: "w2-family-parents",
-        title: "Family - Parents & Siblings",
-        category: "Family",
-        icon: "👪",
-        phrases: [
-          { hindi: "मम्मी / माँ", roman: "Mummy / Maa", english: "Mum / Mother", pronunciation: "MUM-ee / maa", context: "Mummy is common!", speakText: "Mummy" },
-          { hindi: "पापा / पिता", roman: "Papa / Pita", english: "Dad / Father", pronunciation: "PAA-paa / pi-TAA", context: "Papa is everyday", speakText: "Papa" },
-          { hindi: "भाई", roman: "Bhai", english: "Brother", pronunciation: "bhaai", context: "Also for male friends!", speakText: "Bhai" },
-          { hindi: "बहन", roman: "Behen", english: "Sister", pronunciation: "beh-HEN", context: "Also for female friends!", speakText: "Behen" }
-        ],
-        funFact: "In India, you might call any older boy 'bhai' and older girl 'behen' even if they're not your actual sibling!",
-        practice: "Tell a relative about your family using these words!"
-      },
-      
-      "w2-family-grandparents": {
-        id: "w2-family-grandparents",
-        title: "Family - Grandparents",
-        category: "Family",
-        icon: "👵",
-        phrases: [
-          { hindi: "दादा", roman: "Dada", english: "Grandfather (dad's side)", pronunciation: "DAA-daa", context: "Father's father", speakText: "Dada" },
-          { hindi: "दादी", roman: "Dadi", english: "Grandmother (dad's side)", pronunciation: "DAA-dee", context: "Father's mother", speakText: "Dadi" },
-          { hindi: "नाना", roman: "Nana", english: "Grandfather (mum's side)", pronunciation: "NAA-naa", context: "Mother's father", speakText: "Nana" },
-          { hindi: "नानी", roman: "Nani", english: "Grandmother (mum's side)", pronunciation: "NAA-nee", context: "Mother's mother", speakText: "Nani" }
-        ],
-        funFact: "Hindi has different words for grandparents from each side of the family — more specific than English!",
-        practice: "Call your grandparents by their Hindi names today!"
-      },
-      
-      "w2-family-auntsuncles": {
-        id: "w2-family-auntsuncles",
-        title: "Family - Aunts & Uncles",
-        category: "Family",
-        icon: "👫",
-        phrases: [
-          { hindi: "चाचा", roman: "Chacha", english: "Uncle (dad's younger brother)", pronunciation: "CHAA-chaa", context: "Father's younger bro", speakText: "Chacha" },
-          { hindi: "चाची", roman: "Chachi", english: "Chacha's wife", pronunciation: "CHAA-chee", context: "His wife", speakText: "Chachi" },
-          { hindi: "मामा", roman: "Mama", english: "Uncle (mum's brother)", pronunciation: "MAA-maa", context: "Mother's brother", speakText: "Mama" },
-          { hindi: "मामी", roman: "Mami", english: "Mama's wife", pronunciation: "MAA-mee", context: "His wife", speakText: "Mami" }
-        ],
-        funFact: "Hindi has SO many words for aunts and uncles — each one tells you exactly how they're related to you!",
-        practice: "Work out what to call your aunts and uncles in Hindi based on which side they're from!"
-      },
-      
-      "w2-expressions-wantlike": {
-        id: "w2-expressions-wantlike",
-        title: "I Want & I Like",
-        category: "Expressions",
-        icon: "❤️",
-        phrases: [
-          { hindi: "मुझे चाहिए", roman: "Mujhe chahiye", english: "I want / I need", pronunciation: "MUJ-hay chaa-HI-yay", context: "Asking for things", speakText: "Mujhe chahiye" },
-          { hindi: "मुझे पसंद है", roman: "Mujhe pasand hai", english: "I like", pronunciation: "MUJ-hay puh-SUND hay", context: "Expressing likes", speakText: "Mujhe pasand hai" },
-          { hindi: "मुझे नहीं चाहिए", roman: "Mujhe nahin chahiye", english: "I don't want", pronunciation: "MUJ-hay na-HEEN chaa-HI-yay", context: "Declining politely", speakText: "Mujhe nahin chahiye" }
-        ],
-        funFact: "'Mujhe' means 'to me' — so 'mujhe pasand hai' literally means 'it is liked to me'!",
-        practice: "Tell someone what you want using 'Mujhe ___ chahiye' — try with 'paani' (water)!"
-      },
-      
-      "w2-vocab-things": {
-        id: "w2-vocab-things",
-        title: "Common Things",
-        category: "Vocabulary",
-        icon: "📦",
-        phrases: [
-          { hindi: "पानी", roman: "Paani", english: "Water", pronunciation: "PAA-nee", context: "Very useful!", speakText: "Paani" },
-          { hindi: "खाना", roman: "Khana", english: "Food", pronunciation: "KHAA-naa", context: "Meals", speakText: "Khana" },
-          { hindi: "दूध", roman: "Doodh", english: "Milk", pronunciation: "doodh", context: "Drink", speakText: "Doodh" },
-          { hindi: "चाय", roman: "Chai", english: "Tea", pronunciation: "chaai", context: "Very popular!", speakText: "Chai" }
-        ],
-        funFact: "'Chai' is so important in India that offering tea to guests is a sign of hospitality. You'll hear 'Chai?' a lot!",
-        practice: "Ask for water: 'Mujhe paani chahiye' — combine with the previous lesson!"
-      },
-      
-      "w2-review": {
-        id: "w2-review",
-        title: "Week 2 Review",
-        category: "Review",
-        icon: "⭐",
-        phrases: [
-          { hindi: "मुझे पानी चाहिए", roman: "Mujhe paani chahiye", english: "I want water", pronunciation: "MUJ-hay PAA-nee chaa-HI-yay", context: "Useful request!", speakText: "Mujhe paani chahiye" },
-          { hindi: "जी हाँ, शुक्रिया", roman: "Ji haan, shukriya", english: "Yes please, thank you", pronunciation: "jee haahn, shuk-REE-ya", context: "Polite acceptance", speakText: "Ji haan, shukriya" },
-          { hindi: "नमस्ते दादी", roman: "Namaste Dadi", english: "Hello Grandmother", pronunciation: "nuh-MUS-tay DAA-dee", context: "Greeting family!", speakText: "Namaste Dadi" }
-        ],
-        funFact: "You now know family members, basic needs, and polite expressions. You can have real conversations!",
-        practice: "Greet a family member by their Hindi title and ask 'Aap kaise hain?'"
-      },
-      
-      // ===== WEEK 3: Actions & Places =====
-      "w3-actions-comego": {
-        id: "w3-actions-comego",
-        title: "Come & Go",
-        category: "Actions",
-        icon: "🚶",
-        phrases: [
-          { hindi: "आओ", roman: "Aao", english: "Come (friendly)", pronunciation: "AA-oh", context: "To friends", speakText: "Aao" },
-          { hindi: "आइए", roman: "Aaiye", english: "Come (respectful)", pronunciation: "AA-i-yay", context: "To elders", speakText: "Aaiye" },
-          { hindi: "जाओ", roman: "Jao", english: "Go (friendly)", pronunciation: "JAA-oh", context: "To friends", speakText: "Jao" },
-          { hindi: "चलो", roman: "Chalo", english: "Let's go!", pronunciation: "CHUH-lo", context: "Very common!", speakText: "Chalo" }
-        ],
-        funFact: "'Chalo' is one of the most useful Hindi words — use it to get everyone moving!",
-        practice: "Say 'Chalo!' when it's time to leave somewhere!"
-      },
-      
-      "w3-directions-herethere": {
-        id: "w3-directions-herethere",
-        title: "Here, There & Where",
-        category: "Directions",
-        icon: "📍",
-        phrases: [
-          { hindi: "यहाँ", roman: "Yahan", english: "Here", pronunciation: "ya-HAAN", context: "This place", speakText: "Yahan" },
-          { hindi: "वहाँ", roman: "Wahan", english: "There", pronunciation: "wa-HAAN", context: "That place", speakText: "Wahan" },
-          { hindi: "कहाँ?", roman: "Kahan?", english: "Where?", pronunciation: "ka-HAAN", context: "Asking location", speakText: "Kahan" },
-          { hindi: "___ कहाँ है?", roman: "___ kahan hai?", english: "Where is ___?", pronunciation: "___ ka-HAAN hay", context: "Finding things", speakText: "Paani kahan hai" }
-        ],
-        funFact: "Notice the pattern? Yahan, wahan, kahan — they all rhyme and end the same way!",
-        practice: "Ask 'Paani kahan hai?' (Where is the water?) — use things you know!"
-      },
-      
-      "w3-vocab-places1": {
-        id: "w3-vocab-places1",
-        title: "Places",
-        category: "Vocabulary",
-        icon: "🏫",
-        phrases: [
-          { hindi: "घर", roman: "Ghar", english: "Home / House", pronunciation: "gur", context: "Your home", speakText: "Ghar" },
-          { hindi: "स्कूल", roman: "School", english: "School", pronunciation: "school", context: "Same word!", speakText: "School" },
-          { hindi: "दुकान", roman: "Dukaan", english: "Shop", pronunciation: "doo-KAAN", context: "Store", speakText: "Dukaan" },
-          { hindi: "मंदिर", roman: "Mandir", english: "Temple", pronunciation: "MUN-dir", context: "Hindu temple", speakText: "Mandir" }
-        ],
-        funFact: "Many English words like 'school' and 'hospital' are used in Hindi too — they're borrowed words!",
-        practice: "Say where you're going: 'Main school jaa raha hoon' (I'm going to school)!"
-      },
-      
-      "w3-vocab-places2": {
-        id: "w3-vocab-places2",
-        title: "More Places",
-        category: "Vocabulary",
-        icon: "🏥",
-        phrases: [
-          { hindi: "हॉस्पिटल", roman: "Hospital", english: "Hospital", pronunciation: "HOS-pi-tul", context: "Same word!", speakText: "Hospital" },
-          { hindi: "स्टेशन", roman: "Station", english: "Station", pronunciation: "STAY-shun", context: "Train/bus", speakText: "Station" },
-          { hindi: "बाज़ार", roman: "Bazaar", english: "Market", pronunciation: "baa-ZAAR", context: "Shopping area", speakText: "Bazaar" },
-          { hindi: "पार्क", roman: "Park", english: "Park", pronunciation: "park", context: "Same word!", speakText: "Park" }
-        ],
-        funFact: "'Bazaar' is an Urdu/Persian word that English borrowed! So it went Hindi → English.",
-        practice: "Combine with 'kahan hai': 'Station kahan hai?' (Where is the station?)"
-      },
-      
-      "w3-needs-hungrythirsty": {
-        id: "w3-needs-hungrythirsty",
-        title: "Hungry & Thirsty",
-        category: "Needs",
-        icon: "🍽️",
-        phrases: [
-          { hindi: "मुझे भूख लगी है", roman: "Mujhe bhookh lagi hai", english: "I am hungry", pronunciation: "MUJ-hay bhookh LUH-gee hay", context: "Feeling hungry", speakText: "Mujhe bhookh lagi hai" },
-          { hindi: "मुझे प्यास लगी है", roman: "Mujhe pyaas lagi hai", english: "I am thirsty", pronunciation: "MUJ-hay pyaas LUH-gee hay", context: "Need a drink", speakText: "Mujhe pyaas lagi hai" },
-          { hindi: "खाना खाओ", roman: "Khana khao", english: "Eat food", pronunciation: "KHAA-naa KHAA-oh", context: "Invitation to eat", speakText: "Khana khao" }
-        ],
-        funFact: "In Hindi you don't say 'I am hungry' — you say 'hunger has attached to me'. Different way of thinking!",
-        practice: "Before meals, say 'Mujhe bhookh lagi hai!' and see if someone offers khana!"
-      },
-      
-      "w3-actions-givetake": {
-        id: "w3-actions-givetake",
-        title: "Give & Take",
-        category: "Actions",
-        icon: "🤲",
-        phrases: [
-          { hindi: "दो", roman: "Do", english: "Give (friendly)", pronunciation: "doh", context: "Same as 'two'!", speakText: "Do" },
-          { hindi: "दीजिए", roman: "Dijiye", english: "Please give (respectful)", pronunciation: "DEE-ji-yay", context: "To elders", speakText: "Dijiye" },
-          { hindi: "लो", roman: "Lo", english: "Take (friendly)", pronunciation: "loh", context: "Here, take it", speakText: "Lo" },
-          { hindi: "लीजिए", roman: "Lijiye", english: "Please take (respectful)", pronunciation: "LEE-ji-yay", context: "Offering politely", speakText: "Lijiye" }
-        ],
-        funFact: "'Do' means both 'two' AND 'give'! Context tells you which one. 'Paani do' = Give water, not 'two water'!",
-        practice: "Ask politely: 'Paani dijiye' (Please give water) — use this with elders!"
-      },
-      
-      "w3-review": {
-        id: "w3-review",
-        title: "Week 3 Review",
-        category: "Review",
-        icon: "⭐",
-        phrases: [
-          { hindi: "चलो घर", roman: "Chalo ghar", english: "Let's go home", pronunciation: "CHUH-lo gur", context: "Time to go!", speakText: "Chalo ghar" },
-          { hindi: "मुझे भूख लगी है, खाना कहाँ है?", roman: "Mujhe bhookh lagi hai, khana kahan hai?", english: "I'm hungry, where is the food?", pronunciation: "MUJ-hay bhookh LUH-gee hay, KHAA-naa ka-HAAN hay", context: "Useful combo!", speakText: "Mujhe bhookh lagi hai, khana kahan hai" },
-          { hindi: "पानी दीजिए", roman: "Paani dijiye", english: "Please give water", pronunciation: "PAA-nee DEE-ji-yay", context: "Polite request", speakText: "Paani dijiye" }
-        ],
-        funFact: "You can now talk about places, ask for things politely, and express needs. Real conversation skills!",
-        practice: "At mealtime, use only Hindi: ask where food is, say you're hungry, ask for water!"
-      },
-      
-      // ===== WEEK 4: Questions & Time =====
-      "w4-questions-whatwhy": {
-        id: "w4-questions-whatwhy",
-        title: "What & Why",
-        category: "Questions",
-        icon: "❓",
-        phrases: [
-          { hindi: "क्या?", roman: "Kya?", english: "What?", pronunciation: "kyaa", context: "Asking what", speakText: "Kya" },
-          { hindi: "यह क्या है?", roman: "Yeh kya hai?", english: "What is this?", pronunciation: "yeh kyaa hay", context: "Pointing at things", speakText: "Yeh kya hai" },
-          { hindi: "क्यों?", roman: "Kyon?", english: "Why?", pronunciation: "kyohn", context: "Asking why", speakText: "Kyon" },
-          { hindi: "क्या हुआ?", roman: "Kya hua?", english: "What happened?", pronunciation: "kyaa HOO-ah", context: "Very common!", speakText: "Kya hua" }
-        ],
-        funFact: "'Kya hua' is something you'll hear ALL the time — it's the Hindi 'what's up?' or 'what happened?'",
-        practice: "Point at things and ask 'Yeh kya hai?' — learn new words from the answers!"
-      },
-      
-      "w4-questions-whenwho": {
-        id: "w4-questions-whenwho",
-        title: "When & Who",
-        category: "Questions",
-        icon: "🕐",
-        phrases: [
-          { hindi: "कब?", roman: "Kab?", english: "When?", pronunciation: "kub", context: "Asking time", speakText: "Kab" },
-          { hindi: "कौन?", roman: "Kaun?", english: "Who?", pronunciation: "kown", context: "Asking who", speakText: "Kaun" },
-          { hindi: "यह कौन है?", roman: "Yeh kaun hai?", english: "Who is this?", pronunciation: "yeh kown hay", context: "Asking about people", speakText: "Yeh kaun hai" },
-          { hindi: "कब आओगे?", roman: "Kab aaoge?", english: "When will you come?", pronunciation: "kub AA-oh-gay", context: "Asking arrival", speakText: "Kab aaoge" }
-        ],
-        funFact: "All Hindi question words start with 'K': Kya, Kyon, Kab, Kahan, Kaun, Kaise! Easy to remember!",
-        practice: "Learn the K-pattern: Kya (what), Kyon (why), Kab (when), Kahan (where), Kaun (who), Kaise (how)!"
-      },
-      
-      "w4-time-words": {
-        id: "w4-time-words",
-        title: "Time Words",
-        category: "Time",
-        icon: "📅",
-        phrases: [
-          { hindi: "आज", roman: "Aaj", english: "Today", pronunciation: "aaj", context: "This day", speakText: "Aaj" },
-          { hindi: "कल", roman: "Kal", english: "Yesterday / Tomorrow", pronunciation: "kul", context: "Context matters!", speakText: "Kal" },
-          { hindi: "अभी", roman: "Abhi", english: "Now / Right now", pronunciation: "ub-HEE", context: "This moment", speakText: "Abhi" },
-          { hindi: "बाद में", roman: "Baad mein", english: "Later", pronunciation: "baad mayn", context: "After some time", speakText: "Baad mein" }
-        ],
-        funFact: "'Kal' means BOTH yesterday AND tomorrow! You figure out which one from context. Mind-bending!",
-        practice: "Say 'Aaj main khush hoon' (Today I am happy) — combine time with feelings!"
-      },
-      
-      "w4-conversation-smalltalk": {
-        id: "w4-conversation-smalltalk",
-        title: "Small Talk",
-        category: "Conversation",
-        icon: "💭",
-        phrases: [
-          { hindi: "अच्छा", roman: "Accha", english: "Good / OK / Really?", pronunciation: "uch-CHAA", context: "Multi-purpose!", speakText: "Accha" },
-          { hindi: "ठीक है", roman: "Theek hai", english: "OK / It's fine", pronunciation: "teek hay", context: "Agreement", speakText: "Theek hai" },
-          { hindi: "पता नहीं", roman: "Pata nahin", english: "I don't know", pronunciation: "PUH-taa na-HEEN", context: "Uncertainty", speakText: "Pata nahin" },
-          { hindi: "समझ गया/गयी", roman: "Samajh gaya/gayi", english: "I understood", pronunciation: "suh-MUJH GUH-ya/GUH-yee", context: "gaya=boy, gayi=girl", speakText: "Samajh gaya" }
-        ],
-        funFact: "'Accha' is possibly the most versatile Hindi word — it can mean good, OK, really?, I see, oh!, and more!",
-        practice: "React to things with 'Accha!' today — try different tones: surprised, agreeing, questioning!"
-      },
-      
-      "w4-conversation-phone": {
-        id: "w4-conversation-phone",
-        title: "Phone & Video Calls",
-        category: "Conversation",
-        icon: "📱",
-        phrases: [
-          { hindi: "हैलो", roman: "Hello", english: "Hello (phone)", pronunciation: "heh-LOH", context: "Answering phone", speakText: "Hello" },
-          { hindi: "सुनाई दे रहा है?", roman: "Sunai de raha hai?", english: "Can you hear me?", pronunciation: "soo-NAI day RAH-ha hay", context: "Video calls!", speakText: "Sunai de raha hai" },
-          { hindi: "दिखाई दे रहा है?", roman: "Dikhai de raha hai?", english: "Can you see me?", pronunciation: "dik-HAI day RAH-ha hay", context: "Video calls!", speakText: "Dikhai de raha hai" },
-          { hindi: "बाद में बात करते हैं", roman: "Baad mein baat karte hain", english: "Let's talk later", pronunciation: "baad mayn baat KUR-tay hayn", context: "Ending call", speakText: "Baad mein baat karte hain" }
-        ],
-        funFact: "These phrases are perfect for video calls with relatives in India — very practical!",
-        practice: "On your next family video call, use these phrases for real!"
-      },
-      
-      "w4-emotions-feelings": {
-        id: "w4-emotions-feelings",
-        title: "Feelings",
-        category: "Emotions",
-        icon: "😊",
-        phrases: [
-          { hindi: "खुश", roman: "Khush", english: "Happy", pronunciation: "khoosh", context: "Feeling good", speakText: "Main khush hoon" },
-          { hindi: "थका हुआ", roman: "Thaka hua", english: "Tired", pronunciation: "TUH-kaa HOO-ah", context: "Need rest", speakText: "Main thaka hua hoon" },
-          { hindi: "बोर", roman: "Bor", english: "Bored", pronunciation: "bohr", context: "Same word!", speakText: "Main bor hoon" },
-          { hindi: "ठंडा", roman: "Thanda", english: "Cold", pronunciation: "TUN-daa", context: "Temperature", speakText: "Mujhe thanda lag raha hai" }
-        ],
-        funFact: "English words like 'bored' are commonly used in Hindi speech — it's called code-mixing!",
-        practice: "Tell someone how you feel today using 'Main ___ hoon'!"
-      },
-      
-      "w4-review": {
-        id: "w4-review",
-        title: "Week 4 Review",
-        category: "Review",
-        icon: "⭐",
-        phrases: [
-          { hindi: "आज क्या हुआ?", roman: "Aaj kya hua?", english: "What happened today?", pronunciation: "aaj kyaa HOO-ah", context: "Asking about day", speakText: "Aaj kya hua" },
-          { hindi: "सब ठीक है", roman: "Sab theek hai", english: "Everything is fine", pronunciation: "sub teek hay", context: "Common response", speakText: "Sab theek hai" },
-          { hindi: "कल बात करते हैं", roman: "Kal baat karte hain", english: "Let's talk tomorrow", pronunciation: "kul baat KUR-tay hayn", context: "Saying bye", speakText: "Kal baat karte hain" }
-        ],
-        funFact: "You now have all the building blocks for real Hindi conversations with family!",
-        practice: "Have a 2-minute Hindi-only conversation with someone!"
-      },
-      
-      // ===== WEEK 5: Putting It Together =====
-      "w5-phrases-useful": {
-        id: "w5-phrases-useful",
-        title: "Useful Expressions",
-        category: "Phrases",
-        icon: "💬",
-        phrases: [
-          { hindi: "कोई बात नहीं", roman: "Koi baat nahin", english: "No problem / It's OK", pronunciation: "koy baat na-HEEN", context: "Very useful!", speakText: "Koi baat nahin" },
-          { hindi: "बहुत बढ़िया", roman: "Bahut badhiya", english: "Very good / Excellent", pronunciation: "ba-HOOT buh-DEE-ya", context: "Praise!", speakText: "Bahut badhiya" },
-          { hindi: "एक मिनट", roman: "Ek minute", english: "One minute / Wait", pronunciation: "ek MIN-it", context: "Asking to wait", speakText: "Ek minute" },
-          { hindi: "फिर से", roman: "Phir se", english: "Again", pronunciation: "fir say", context: "Repeat please", speakText: "Phir se" }
-        ],
-        funFact: "'Koi baat nahin' is the Hindi 'no worries' — you'll hear it constantly!",
-        practice: "Use 'Bahut badhiya!' to praise someone today!"
-      },
-      
-      "w5-final": {
-        id: "w5-final",
-        title: "You Did It!",
-        category: "Final",
-        icon: "🎉",
-        phrases: [
-          { hindi: "नमस्ते! आप कैसे हैं?", roman: "Namaste! Aap kaise hain?", english: "Hello! How are you?", pronunciation: "nuh-MUS-tay! aap KAY-say hayn", context: "Greeting", speakText: "Namaste! Aap kaise hain?" },
-          { hindi: "मैं ठीक हूँ, आप सुनाइए", roman: "Main theek hoon, aap sunaiye", english: "I'm fine, tell me about you", pronunciation: "mayn teek hoon, aap soo-NAI-yay", context: "Polite response", speakText: "Main theek hoon, aap sunaiye" },
-          { hindi: "बहुत अच्छा लगा आपसे मिलके", roman: "Bahut accha laga aapse milke", english: "It was great to meet you", pronunciation: "ba-HOOT uch-CHAA LUH-gaa AAP-say MIL-kay", context: "Saying goodbye", speakText: "Bahut accha laga aapse milke" }
-        ],
-        funFact: "You've completed 30 days of Hindi! You know 100+ phrases for real conversations with family!",
-        practice: "Call a relative and have a full Hindi conversation using everything you've learned!"
-      },
-      
-      // ===== WEEK 6: Numbers & Descriptions =====
-      "w6-numbers-11to15": {
-        id: "w6-numbers-11to15",
-        title: "Numbers 11-15",
-        category: "Numbers",
-        icon: "🔢",
-        phrases: [
-          { hindi: "ग्यारह", roman: "Gyaarah", english: "Eleven (11)", pronunciation: "GYAA-ruh", context: "11", speakText: "Gyaarah" },
-          { hindi: "बारह", roman: "Baarah", english: "Twelve (12)", pronunciation: "BAA-ruh", context: "12", speakText: "Baarah" },
-          { hindi: "तेरह", roman: "Terah", english: "Thirteen (13)", pronunciation: "TAY-ruh", context: "13", speakText: "Terah" },
-          { hindi: "चौदह", roman: "Chaudah", english: "Fourteen (14)", pronunciation: "CHOW-duh", context: "14", speakText: "Chaudah" },
-          { hindi: "पंद्रह", roman: "Pandrah", english: "Fifteen (15)", pronunciation: "PUN-druh", context: "15", speakText: "Pandrah" }
-        ],
-        funFact: "Hindi numbers 11-19 don't follow a simple pattern like English — each one is unique! Time to memorise.",
-        practice: "Now you can say any age from 1-15! Practice: 'Main baarah saal ka/ki hoon' (I am 12 years old)."
-      },
-      
-      "w6-numbers-16to20": {
-        id: "w6-numbers-16to20",
-        title: "Numbers 16-20",
-        category: "Numbers",
-        icon: "🔢",
-        phrases: [
-          { hindi: "सोलह", roman: "Solah", english: "Sixteen (16)", pronunciation: "SOH-luh", context: "16", speakText: "Solah" },
-          { hindi: "सत्रह", roman: "Satrah", english: "Seventeen (17)", pronunciation: "SUT-ruh", context: "17", speakText: "Satrah" },
-          { hindi: "अठारह", roman: "Athaarah", english: "Eighteen (18)", pronunciation: "uh-THAA-ruh", context: "18", speakText: "Athaarah" },
-          { hindi: "उन्नीस", roman: "Unnis", english: "Nineteen (19)", pronunciation: "oon-NEES", context: "19", speakText: "Unnis" },
-          { hindi: "बीस", roman: "Bees", english: "Twenty (20)", pronunciation: "bees", context: "20", speakText: "Bees" }
-        ],
-        funFact: "'Bees' (20) is easy to remember! After this, Hindi numbers follow patterns based on tens.",
-        practice: "Count from ek to bees without looking! Challenge a family member to a race."
-      },
-      
-      "w6-descriptions-bigsmall": {
-        id: "w6-descriptions-bigsmall",
-        title: "Big & Small",
-        category: "Descriptions",
-        icon: "📏",
-        phrases: [
-          { hindi: "बड़ा", roman: "Bada", english: "Big (masculine)", pronunciation: "BUH-daa", context: "For masculine nouns", speakText: "Bada" },
-          { hindi: "बड़ी", roman: "Badi", english: "Big (feminine)", pronunciation: "BUH-dee", context: "For feminine nouns", speakText: "Badi" },
-          { hindi: "छोटा", roman: "Chhota", english: "Small (masculine)", pronunciation: "CHO-taa", context: "For masculine nouns", speakText: "Chhota" },
-          { hindi: "छोटी", roman: "Chhoti", english: "Small (feminine)", pronunciation: "CHO-tee", context: "For feminine nouns", speakText: "Chhoti" }
-        ],
-        funFact: "In Hindi, adjectives change based on the gender of the noun! 'Bada ghar' (big house) but 'Badi kitaab' (big book).",
-        practice: "Point at things and describe them: 'Yeh bada hai' (This is big) or 'Yeh chhota hai' (This is small)!"
-      },
-      
-      "w6-descriptions-goodbad": {
-        id: "w6-descriptions-goodbad",
-        title: "Good & Bad",
-        category: "Descriptions",
-        icon: "👍",
-        phrases: [
-          { hindi: "अच्छा", roman: "Accha", english: "Good (masculine)", pronunciation: "uch-CHAA", context: "Also means OK!", speakText: "Accha" },
-          { hindi: "अच्छी", roman: "Acchi", english: "Good (feminine)", pronunciation: "uch-CHEE", context: "For feminine", speakText: "Acchi" },
-          { hindi: "बुरा", roman: "Bura", english: "Bad (masculine)", pronunciation: "BOO-raa", context: "Negative", speakText: "Bura" },
-          { hindi: "बुरी", roman: "Buri", english: "Bad (feminine)", pronunciation: "BOO-ree", context: "For feminine", speakText: "Buri" },
-          { hindi: "ठीक-ठाक", roman: "Theek-thaak", english: "So-so / Okay", pronunciation: "teek-TAAK", context: "Not great, not bad", speakText: "Theek thaak" }
-        ],
-        funFact: "'Accha' is incredibly versatile — it can mean 'good', 'okay', 'really?', 'I see', or just a filler word!",
-        practice: "React to food today: 'Bahut accha!' (Very good!) or 'Theek-thaak hai' (It's okay)."
-      },
-      
-      "w6-descriptions-hotcold": {
-        id: "w6-descriptions-hotcold",
-        title: "Hot & Cold",
-        category: "Descriptions",
-        icon: "🌡️",
-        phrases: [
-          { hindi: "गरम", roman: "Garam", english: "Hot", pronunciation: "GUH-rum", context: "Temperature", speakText: "Garam" },
-          { hindi: "ठंडा", roman: "Thanda", english: "Cold (masculine)", pronunciation: "TUN-daa", context: "Temperature", speakText: "Thanda" },
-          { hindi: "ठंडी", roman: "Thandi", english: "Cold (feminine)", pronunciation: "TUN-dee", context: "For feminine", speakText: "Thandi" },
-          { hindi: "गरम चाय", roman: "Garam chai", english: "Hot tea", pronunciation: "GUH-rum chaai", context: "Common combo!", speakText: "Garam chai" },
-          { hindi: "ठंडा पानी", roman: "Thanda paani", english: "Cold water", pronunciation: "TUN-daa PAA-nee", context: "Very useful!", speakText: "Thanda paani" }
-        ],
-        funFact: "'Garam' doesn't change for gender, but 'thanda/thandi' does. 'Thanda paani' but 'thandi hawa' (cold wind).",
-        practice: "Order drinks: 'Mujhe thanda paani chahiye' or 'Mujhe garam chai chahiye'!"
-      },
-      
-      "w6-colours-basic": {
-        id: "w6-colours-basic",
-        title: "Basic Colours",
-        category: "Colours",
-        icon: "🎨",
-        phrases: [
-          { hindi: "लाल", roman: "Laal", english: "Red", pronunciation: "laal", context: "Colour", speakText: "Laal" },
-          { hindi: "नीला", roman: "Neela", english: "Blue (masculine)", pronunciation: "NEE-laa", context: "Changes to neeli", speakText: "Neela" },
-          { hindi: "हरा", roman: "Hara", english: "Green (masculine)", pronunciation: "HUH-raa", context: "Changes to hari", speakText: "Hara" },
-          { hindi: "पीला", roman: "Peela", english: "Yellow (masculine)", pronunciation: "PEE-laa", context: "Changes to peeli", speakText: "Peela" },
-          { hindi: "सफ़ेद", roman: "Safed", english: "White", pronunciation: "suh-FAYD", context: "No gender change", speakText: "Safed" }
-        ],
-        funFact: "Some colours change for gender (neela → neeli) but others like 'laal' and 'safed' stay the same!",
-        practice: "Point at things and say their colour: 'Yeh laal hai' (This is red)!"
-      },
-      
-      "w6-review": {
-        id: "w6-review",
-        title: "Week 6 Review",
-        category: "Review",
-        icon: "⭐",
-        phrases: [
-          { hindi: "मुझे ठंडा पानी चाहिए", roman: "Mujhe thanda paani chahiye", english: "I want cold water", pronunciation: "MUJ-hay TUN-daa PAA-nee chaa-HI-yay", context: "Useful request!", speakText: "Mujhe thanda paani chahiye" },
-          { hindi: "यह बहुत अच्छा है", roman: "Yeh bahut accha hai", english: "This is very good", pronunciation: "yeh ba-HOOT uch-CHAA hay", context: "Compliment!", speakText: "Yeh bahut accha hai" },
-          { hindi: "वह बड़ा नीला घर है", roman: "Woh bada neela ghar hai", english: "That is a big blue house", pronunciation: "woh BUH-daa NEE-laa gur hay", context: "Describing!", speakText: "Woh bada neela ghar hai" }
-        ],
-        funFact: "You can now count to 20 and describe things! Your Hindi is getting more colourful — literally!",
-        practice: "Describe 5 things around you using size, quality, and colour words!"
-      },
-      
-      // ===== WEEK 7: Food & Tastes =====
-      "w7-food-meals": {
-        id: "w7-food-meals",
-        title: "Meals",
-        category: "Food",
-        icon: "🍽️",
-        phrases: [
-          { hindi: "नाश्ता", roman: "Naashta", english: "Breakfast", pronunciation: "NAASH-taa", context: "Morning meal", speakText: "Naashta" },
-          { hindi: "दोपहर का खाना", roman: "Dopahar ka khana", english: "Lunch", pronunciation: "doh-PUH-hur kaa KHAA-naa", context: "Midday meal", speakText: "Dopahar ka khana" },
-          { hindi: "रात का खाना", roman: "Raat ka khana", english: "Dinner", pronunciation: "raat kaa KHAA-naa", context: "Night meal", speakText: "Raat ka khana" },
-          { hindi: "खाना खा लिया?", roman: "Khana kha liya?", english: "Have you eaten?", pronunciation: "KHAA-naa khaa LI-yaa", context: "Common question!", speakText: "Khana kha liya" }
-        ],
-        funFact: "'Khana kha liya?' (Have you eaten?) is how Indians show they care — expect to hear it a lot from relatives!",
-        practice: "Ask family members 'Naashta kha liya?' (Have you had breakfast?) tomorrow morning!"
-      },
-      
-      "w7-food-dishes": {
-        id: "w7-food-dishes",
-        title: "Common Dishes",
-        category: "Food",
-        icon: "🍛",
-        phrases: [
-          { hindi: "रोटी", roman: "Roti", english: "Flatbread", pronunciation: "ROH-tee", context: "Staple food", speakText: "Roti" },
-          { hindi: "चावल", roman: "Chaawal", english: "Rice", pronunciation: "CHAA-wul", context: "Staple food", speakText: "Chaawal" },
-          { hindi: "दाल", roman: "Daal", english: "Lentils", pronunciation: "daal", context: "Protein source", speakText: "Daal" },
-          { hindi: "सब्ज़ी", roman: "Sabzi", english: "Vegetable dish", pronunciation: "SUB-zee", context: "Cooked veggies", speakText: "Sabzi" },
-          { hindi: "दाल-चावल", roman: "Daal-chaawal", english: "Lentils and rice", pronunciation: "daal-CHAA-wul", context: "Classic combo!", speakText: "Daal chaawal" }
-        ],
-        funFact: "'Daal-chaawal' (lentils and rice) is comfort food for most Indians — simple, nutritious, and delicious!",
-        practice: "At dinner, name what you're eating: 'Yeh roti hai, yeh sabzi hai'!"
-      },
-      
-      "w7-food-tastes": {
-        id: "w7-food-tastes",
-        title: "Tastes",
-        category: "Food",
-        icon: "😋",
-        phrases: [
-          { hindi: "मीठा", roman: "Meetha", english: "Sweet", pronunciation: "MEE-taa", context: "Taste", speakText: "Meetha" },
-          { hindi: "नमकीन", roman: "Namkeen", english: "Salty", pronunciation: "num-KEEN", context: "Also: savoury snacks", speakText: "Namkeen" },
-          { hindi: "तीखा", roman: "Teekha", english: "Spicy", pronunciation: "TEE-kaa", context: "Hot/chilli", speakText: "Teekha" },
-          { hindi: "खट्टा", roman: "Khatta", english: "Sour", pronunciation: "KHUT-taa", context: "Like lemon", speakText: "Khatta" },
-          { hindi: "स्वादिष्ट", roman: "Swaadisht", english: "Delicious", pronunciation: "swaa-DISHT", context: "Tasty!", speakText: "Swaadisht" }
-        ],
-        funFact: "'Namkeen' means salty but also refers to crunchy savoury snacks — every Indian household has some!",
-        practice: "Describe food: 'Yeh bahut teekha hai!' (This is very spicy!) or 'Bahut swaadisht!' (Delicious!)"
-      },
-      
-      "w7-food-more": {
-        id: "w7-food-more",
-        title: "More Food Words",
-        category: "Food",
-        icon: "🥗",
-        phrases: [
-          { hindi: "फल", roman: "Phal", english: "Fruit", pronunciation: "ful", context: "General", speakText: "Phal" },
-          { hindi: "आम", roman: "Aam", english: "Mango", pronunciation: "aam", context: "King of fruits!", speakText: "Aam" },
-          { hindi: "केला", roman: "Kela", english: "Banana", pronunciation: "KAY-laa", context: "Common fruit", speakText: "Kela" },
-          { hindi: "मिठाई", roman: "Mithai", english: "Sweets/Dessert", pronunciation: "mi-THAI", context: "Indian sweets", speakText: "Mithai" },
-          { hindi: "अचार", roman: "Achaar", english: "Pickle", pronunciation: "uh-CHAAR", context: "Spicy preserve", speakText: "Achaar" }
-        ],
-        funFact: "Mango ('aam') is India's national fruit! There are over 1,000 varieties grown in India.",
-        practice: "Ask for fruit: 'Mujhe aam chahiye' (I want mango) or describe: 'Aam meetha hai' (Mango is sweet)!"
-      },
-      
-      "w7-food-requests": {
-        id: "w7-food-requests",
-        title: "Food Requests",
-        category: "Food",
-        icon: "🙋",
-        phrases: [
-          { hindi: "और चाहिए", roman: "Aur chahiye", english: "Want more", pronunciation: "owr chaa-HI-yay", context: "Asking for more", speakText: "Aur chahiye" },
-          { hindi: "बस, बहुत हो गया", roman: "Bas, bahut ho gaya", english: "Enough, that's plenty", pronunciation: "bus, ba-HOOT ho GUH-ya", context: "Stop serving!", speakText: "Bas, bahut ho gaya" },
-          { hindi: "थोड़ा सा", roman: "Thoda sa", english: "A little bit", pronunciation: "TOH-daa saa", context: "Small amount", speakText: "Thoda sa" },
-          { hindi: "पेट भर गया", roman: "Pet bhar gaya", english: "I'm full (stomach is full)", pronunciation: "payt bur GUH-ya", context: "Can't eat more!", speakText: "Pet bhar gaya" }
-        ],
-        funFact: "'Bas!' on its own means 'Stop!' or 'Enough!' — very useful when relatives keep serving you food!",
-        practice: "At meals, practice: 'Thoda sa dijiye' (Give me a little) and 'Bas, pet bhar gaya' (I'm full)!"
-      },
-      
-      "w7-drinks": {
-        id: "w7-drinks",
-        title: "Drinks",
-        category: "Food",
-        icon: "🥤",
-        phrases: [
-          { hindi: "पानी", roman: "Paani", english: "Water", pronunciation: "PAA-nee", context: "You know this!", speakText: "Paani" },
-          { hindi: "चाय", roman: "Chai", english: "Tea", pronunciation: "chaai", context: "You know this!", speakText: "Chai" },
-          { hindi: "दूध", roman: "Doodh", english: "Milk", pronunciation: "doodh", context: "You know this!", speakText: "Doodh" },
-          { hindi: "जूस", roman: "Juice", english: "Juice", pronunciation: "joos", context: "Same word!", speakText: "Juice" },
-          { hindi: "लस्सी", roman: "Lassi", english: "Yogurt drink", pronunciation: "LUS-see", context: "Sweet or salty", speakText: "Lassi" }
-        ],
-        funFact: "Lassi is a refreshing yogurt drink — 'meethi lassi' is sweet, 'namkeen lassi' is salty. Both are delicious!",
-        practice: "Order a drink: 'Mujhe meethi lassi chahiye' (I want sweet lassi)!"
-      },
-      
-      "w7-review": {
-        id: "w7-review",
-        title: "Week 7 Review",
-        category: "Review",
-        icon: "⭐",
-        phrases: [
-          { hindi: "खाना बहुत स्वादिष्ट है", roman: "Khana bahut swaadisht hai", english: "The food is very delicious", pronunciation: "KHAA-naa ba-HOOT swaa-DISHT hay", context: "Big compliment!", speakText: "Khana bahut swaadisht hai" },
-          { hindi: "मुझे मीठा पसंद है", roman: "Mujhe meetha pasand hai", english: "I like sweets", pronunciation: "MUJ-hay MEE-taa puh-SUND hay", context: "Preference", speakText: "Mujhe meetha pasand hai" },
-          { hindi: "और रोटी दीजिए", roman: "Aur roti dijiye", english: "Please give more roti", pronunciation: "owr ROH-tee DEE-ji-yay", context: "Polite request", speakText: "Aur roti dijiye" }
-        ],
-        funFact: "You can now talk about food, tastes, and meals — essential for any family gathering!",
-        practice: "At your next meal, try to use only Hindi for food-related conversation!"
-      },
-      
-      // ===== WEEK 8: Verbs & Actions =====
-      "w8-verbs-sitstand": {
-        id: "w8-verbs-sitstand",
-        title: "Sit, Stand, Wait",
-        category: "Verbs",
-        icon: "🪑",
-        phrases: [
-          { hindi: "बैठो", roman: "Baitho", english: "Sit (friendly)", pronunciation: "BAYTH-oh", context: "Command", speakText: "Baitho" },
-          { hindi: "बैठिए", roman: "Baithiye", english: "Please sit (respectful)", pronunciation: "bayth-I-yay", context: "For elders", speakText: "Baithiye" },
-          { hindi: "खड़े हो जाओ", roman: "Khade ho jao", english: "Stand up", pronunciation: "KHA-day ho JAA-oh", context: "Command", speakText: "Khade ho jao" },
-          { hindi: "रुको", roman: "Ruko", english: "Wait / Stop", pronunciation: "ROO-koh", context: "Friendly", speakText: "Ruko" },
-          { hindi: "रुकिए", roman: "Rukiye", english: "Please wait (respectful)", pronunciation: "roo-KI-yay", context: "For elders", speakText: "Rukiye" }
-        ],
-        funFact: "Notice the pattern? '-o' endings are friendly, '-iye' endings are respectful. This works for many verbs!",
-        practice: "Offer a seat to an elder: 'Baithiye!' (Please sit!) and wait for someone: 'Ek minute, rukiye!'"
-      },
-      
-      "w8-verbs-looksee": {
-        id: "w8-verbs-looksee",
-        title: "Look, See, Listen",
-        category: "Verbs",
-        icon: "👀",
-        phrases: [
-          { hindi: "देखो", roman: "Dekho", english: "Look / See (friendly)", pronunciation: "DAY-koh", context: "Friendly", speakText: "Dekho" },
-          { hindi: "देखिए", roman: "Dekhiye", english: "Please look (respectful)", pronunciation: "day-KHI-yay", context: "For elders", speakText: "Dekhiye" },
-          { hindi: "सुनो", roman: "Suno", english: "Listen (friendly)", pronunciation: "SOO-noh", context: "Friendly", speakText: "Suno" },
-          { hindi: "सुनिए", roman: "Suniye", english: "Please listen (respectful)", pronunciation: "soo-NI-yay", context: "For elders", speakText: "Suniye" },
-          { hindi: "यह देखो!", roman: "Yeh dekho!", english: "Look at this!", pronunciation: "yeh DAY-koh", context: "Showing something", speakText: "Yeh dekho" }
-        ],
-        funFact: "'Suno' and 'Suniye' are used to get someone's attention, like saying 'Listen...' or 'Excuse me...'",
-        practice: "Get attention politely: 'Suniye, yeh dekhiye!' (Listen, please look at this!)"
-      },
-      
-      "w8-verbs-speakread": {
-        id: "w8-verbs-speakread",
-        title: "Speak, Read, Write",
-        category: "Verbs",
-        icon: "🗣️",
-        phrases: [
-          { hindi: "बोलो", roman: "Bolo", english: "Speak / Say (friendly)", pronunciation: "BOH-loh", context: "Friendly", speakText: "Bolo" },
-          { hindi: "बोलिए", roman: "Boliye", english: "Please speak (respectful)", pronunciation: "boh-LI-yay", context: "For elders", speakText: "Boliye" },
-          { hindi: "पढ़ो", roman: "Padho", english: "Read / Study", pronunciation: "PUH-doh", context: "Both meanings!", speakText: "Padho" },
-          { hindi: "लिखो", roman: "Likho", english: "Write", pronunciation: "LI-koh", context: "Writing", speakText: "Likho" },
-          { hindi: "फिर से बोलिए", roman: "Phir se boliye", english: "Please say it again", pronunciation: "fir say boh-LI-yay", context: "Didn't understand", speakText: "Phir se boliye" }
-        ],
-        funFact: "'Padho' means both 'read' and 'study' — so 'Main padh raha hoon' could mean either!",
-        practice: "When you don't understand: 'Phir se boliye' (Please say it again) — very useful!"
-      },
-      
-      "w8-verbs-dontdo": {
-        id: "w8-verbs-dontdo",
-        title: "Don't Do That!",
-        category: "Verbs",
-        icon: "🚫",
-        phrases: [
-          { hindi: "मत करो", roman: "Mat karo", english: "Don't do that", pronunciation: "mut KUH-roh", context: "Prohibition", speakText: "Mat karo" },
-          { hindi: "मत जाओ", roman: "Mat jao", english: "Don't go", pronunciation: "mut JAA-oh", context: "Stay here!", speakText: "Mat jao" },
-          { hindi: "चिंता मत करो", roman: "Chinta mat karo", english: "Don't worry", pronunciation: "CHIN-taa mut KUH-roh", context: "Reassurance", speakText: "Chinta mat karo" },
-          { hindi: "ऐसा मत बोलो", roman: "Aisa mat bolo", english: "Don't say that", pronunciation: "AY-saa mut BOH-loh", context: "Disagreement", speakText: "Aisa mat bolo" }
-        ],
-        funFact: "'Mat' before a verb makes it negative — it's like adding 'don't'. Simple but very useful!",
-        practice: "Reassure someone: 'Chinta mat karo, sab theek hai!' (Don't worry, everything is fine!)"
-      },
-      
-      "w8-verbs-doing": {
-        id: "w8-verbs-doing",
-        title: "What Are You Doing?",
-        category: "Verbs",
-        icon: "🤔",
-        phrases: [
-          { hindi: "क्या कर रहे हो?", roman: "Kya kar rahe ho?", english: "What are you doing? (friendly)", pronunciation: "kyaa kur RAH-hay ho", context: "To friends", speakText: "Kya kar rahe ho" },
-          { hindi: "क्या कर रहे हैं?", roman: "Kya kar rahe hain?", english: "What are you doing? (respectful)", pronunciation: "kyaa kur RAH-hay hayn", context: "To elders", speakText: "Kya kar rahe hain" },
-          { hindi: "मैं खाना बना रहा हूँ", roman: "Main khana bana raha hoon", english: "I am cooking (male)", pronunciation: "mayn KHAA-naa buh-NAA RAH-ha hoon", context: "Present continuous", speakText: "Main khana bana raha hoon" },
-          { hindi: "मैं पढ़ रही हूँ", roman: "Main padh rahi hoon", english: "I am studying (female)", pronunciation: "mayn pudh RAH-hee hoon", context: "Present continuous", speakText: "Main padh rahi hoon" }
-        ],
-        funFact: "'Raha/rahi/rahe' shows something is happening NOW — like adding '-ing' in English!",
-        practice: "Answer 'Kya kar rahe ho?' with what you're actually doing: 'Main ___ raha/rahi hoon'!"
-      },
-      
-      "w8-verbs-helping": {
-        id: "w8-verbs-helping",
-        title: "Helping & Asking",
-        category: "Verbs",
-        icon: "🤝",
-        phrases: [
-          { hindi: "मदद करो", roman: "Madad karo", english: "Help (friendly)", pronunciation: "MUH-dud KUH-roh", context: "Asking for help", speakText: "Madad karo" },
-          { hindi: "मदद कीजिए", roman: "Madad kijiye", english: "Please help (respectful)", pronunciation: "MUH-dud KEE-ji-yay", context: "Polite request", speakText: "Madad kijiye" },
-          { hindi: "मुझे मदद चाहिए", roman: "Mujhe madad chahiye", english: "I need help", pronunciation: "MUJ-hay MUH-dud chaa-HI-yay", context: "Requesting help", speakText: "Mujhe madad chahiye" },
-          { hindi: "क्या मैं मदद कर सकता हूँ?", roman: "Kya main madad kar sakta hoon?", english: "Can I help? (male)", pronunciation: "kyaa mayn MUH-dud kur SUK-taa hoon", context: "Offering help", speakText: "Kya main madad kar sakta hoon" }
-        ],
-        funFact: "'Sakta/sakti' means 'can' or 'able to' — add it to any verb to ask if someone can do something!",
-        practice: "Offer help to family: 'Kya main madad kar sakta/sakti hoon?' (Can I help?)"
-      },
-      
-      "w8-review": {
-        id: "w8-review",
-        title: "Week 8 Review",
-        category: "Review",
-        icon: "⭐",
-        phrases: [
-          { hindi: "यहाँ बैठिए", roman: "Yahan baithiye", english: "Please sit here", pronunciation: "ya-HAAN bayth-I-yay", context: "Offering seat", speakText: "Yahan baithiye" },
-          { hindi: "चिंता मत करो, मैं मदद करूँगा", roman: "Chinta mat karo, main madad karunga", english: "Don't worry, I will help", pronunciation: "CHIN-taa mut KUH-roh, mayn MUH-dud kuh-ROON-gaa", context: "Reassurance", speakText: "Chinta mat karo, main madad karunga" },
-          { hindi: "धीरे बोलिए, फिर से", roman: "Dheere boliye, phir se", english: "Please speak slowly, again", pronunciation: "DEE-ray boh-LI-yay, fir say", context: "Language learner!", speakText: "Dheere boliye, phir se" }
-        ],
-        funFact: "You now know how to give commands, make requests, and describe ongoing actions!",
-        practice: "Use 'Dheere boliye' (Please speak slowly) — it's your best friend as a Hindi learner!"
-      },
-      
-      // ===== WEEK 9: Past Tense & Shopping =====
-      "w9-past-basic": {
-        id: "w9-past-basic",
-        title: "Past Tense Basics",
-        category: "Grammar",
-        icon: "⏮️",
-        phrases: [
-          { hindi: "मैं गया/गयी", roman: "Main gaya/gayi", english: "I went (m/f)", pronunciation: "mayn GUH-ya/GUH-yee", context: "Past tense", speakText: "Main gaya" },
-          { hindi: "मैंने खाया", roman: "Maine khaya", english: "I ate", pronunciation: "MAY-nay KHAA-ya", context: "Past tense", speakText: "Maine khaya" },
-          { hindi: "मैंने देखा", roman: "Maine dekha", english: "I saw", pronunciation: "MAY-nay DAY-khaa", context: "Past tense", speakText: "Maine dekha" },
-          { hindi: "मैंने किया", roman: "Maine kiya", english: "I did", pronunciation: "MAY-nay KI-ya", context: "Past tense", speakText: "Maine kiya" }
-        ],
-        funFact: "Hindi past tense changes based on the verb AND sometimes the gender of the subject. 'Maine' is used for actions done TO something.",
-        practice: "Describe your day: 'Maine naashta khaya' (I ate breakfast), 'Main school gaya/gayi' (I went to school)!"
-      },
-      
-      "w9-past-questions": {
-        id: "w9-past-questions",
-        title: "What Did You Do?",
-        category: "Grammar",
-        icon: "❓",
-        phrases: [
-          { hindi: "क्या हुआ?", roman: "Kya hua?", english: "What happened?", pronunciation: "kyaa HOO-ah", context: "You know this!", speakText: "Kya hua" },
-          { hindi: "कहाँ गये थे?", roman: "Kahan gaye the?", english: "Where did you go?", pronunciation: "ka-HAAN GUH-yay thay", context: "Asking about past", speakText: "Kahan gaye the" },
-          { hindi: "क्या किया?", roman: "Kya kiya?", english: "What did you do?", pronunciation: "kyaa KI-ya", context: "Asking about actions", speakText: "Kya kiya" },
-          { hindi: "कैसा रहा?", roman: "Kaisa raha?", english: "How was it?", pronunciation: "KAY-saa RAH-ha", context: "Asking about experience", speakText: "Kaisa raha" }
-        ],
-        funFact: "'Kaisa raha?' (How was it?) is perfect for asking about trips, meals, movies, or any experience!",
-        practice: "Ask family about their day: 'Aaj kya kiya?' (What did you do today?) and 'Kaisa raha?'"
-      },
-      
-      "w9-shopping-basics": {
-        id: "w9-shopping-basics",
-        title: "Shopping Basics",
-        category: "Shopping",
-        icon: "🛍️",
-        phrases: [
-          { hindi: "कितने का है?", roman: "Kitne ka hai?", english: "How much is it? (masculine)", pronunciation: "KIT-nay kaa hay", context: "Asking price", speakText: "Kitne ka hai" },
-          { hindi: "कितने की है?", roman: "Kitne ki hai?", english: "How much is it? (feminine)", pronunciation: "KIT-nay kee hay", context: "Asking price", speakText: "Kitne ki hai" },
-          { hindi: "बहुत महंगा है", roman: "Bahut mahanga hai", english: "It's very expensive", pronunciation: "ba-HOOT muh-HUN-gaa hay", context: "Expensive!", speakText: "Bahut mahanga hai" },
-          { hindi: "सस्ता है", roman: "Sasta hai", english: "It's cheap", pronunciation: "SUS-taa hay", context: "Affordable", speakText: "Sasta hai" }
-        ],
-        funFact: "Bargaining is common in Indian markets! 'Bahut mahanga hai' is your opening move to negotiate.",
-        practice: "Practice at home: point at objects and ask 'Kitne ka hai?' then react with 'Mahanga!' or 'Sasta!'"
-      },
-      
-      "w9-shopping-numbers": {
-        id: "w9-shopping-numbers",
-        title: "Money Numbers",
-        category: "Shopping",
-        icon: "💰",
-        phrases: [
-          { hindi: "रुपये", roman: "Rupaye", english: "Rupees", pronunciation: "roo-PUH-yay", context: "Indian currency", speakText: "Rupaye" },
-          { hindi: "सौ", roman: "Sau", english: "Hundred (100)", pronunciation: "sow", context: "100", speakText: "Sau" },
-          { hindi: "दो सौ", roman: "Do sau", english: "Two hundred (200)", pronunciation: "doh sow", context: "200", speakText: "Do sau" },
-          { hindi: "पाँच सौ", roman: "Paanch sau", english: "Five hundred (500)", pronunciation: "paanch sow", context: "500", speakText: "Paanch sau" },
-          { hindi: "हज़ार", roman: "Hazaar", english: "Thousand (1000)", pronunciation: "huh-ZAAR", context: "1000", speakText: "Hazaar" }
-        ],
-        funFact: "Common prices: 'Pachaas rupaye' (₹50), 'Sau rupaye' (₹100), 'Do sau pachaas' (₹250)!",
-        practice: "Practice big numbers: 'Sau' (100), 'Do sau' (200), 'Teen sau' (300), up to 'Das sau' (1000)!"
-      },
-      
-      "w9-shopping-phrases": {
-        id: "w9-shopping-phrases",
-        title: "Shopping Phrases",
-        category: "Shopping",
-        icon: "🏪",
-        phrases: [
-          { hindi: "यह दिखाइए", roman: "Yeh dikhaiye", english: "Please show me this", pronunciation: "yeh dik-HAI-yay", context: "Requesting to see", speakText: "Yeh dikhaiye" },
-          { hindi: "और कुछ?", roman: "Aur kuch?", english: "Anything else?", pronunciation: "owr kuch", context: "Shopkeeper asks", speakText: "Aur kuch" },
-          { hindi: "बस इतना ही", roman: "Bas itna hi", english: "That's all", pronunciation: "bus IT-naa hee", context: "Nothing more", speakText: "Bas itna hi" },
-          { hindi: "पैसे", roman: "Paise", english: "Money / Change", pronunciation: "PAY-say", context: "Cash", speakText: "Paise" }
-        ],
-        funFact: "'Aur kuch?' is what shopkeepers always ask. Reply with 'Bas itna hi' (That's all) or name what else you need!",
-        practice: "Role-play shopping: 'Yeh dikhaiye... Kitne ka hai?... Bahut mahanga!... Bas itna hi.'"
-      },
-      
-      "w9-shopping-bargain": {
-        id: "w9-shopping-bargain",
-        title: "Bargaining",
-        category: "Shopping",
-        icon: "🤝",
-        phrases: [
-          { hindi: "कम कीजिए", roman: "Kam kijiye", english: "Please reduce (the price)", pronunciation: "kum KEE-ji-yay", context: "Bargaining!", speakText: "Kam kijiye" },
-          { hindi: "सही दाम बताइए", roman: "Sahi daam bataiye", english: "Tell me the real price", pronunciation: "suh-HEE daam buh-TAI-yay", context: "Negotiating", speakText: "Sahi daam bataiye" },
-          { hindi: "ठीक है, ले लो", roman: "Theek hai, le lo", english: "OK, take it (final offer)", pronunciation: "teek hay, lay loh", context: "Agreeing to price", speakText: "Theek hai, le lo" },
-          { hindi: "नहीं चाहिए", roman: "Nahin chahiye", english: "I don't want it", pronunciation: "na-HEEN chaa-HI-yay", context: "Walking away", speakText: "Nahin chahiye" }
-        ],
-        funFact: "In Indian markets, walking away saying 'Nahin chahiye' often gets you a better price! They'll call you back.",
-        practice: "Practice the bargaining dance: Ask price → Say 'Bahut mahanga!' → 'Kam kijiye' → Walk away if needed!"
-      },
-      
-      "w9-review": {
-        id: "w9-review",
-        title: "Week 9 Review",
-        category: "Review",
-        icon: "⭐",
-        phrases: [
-          { hindi: "कल मैं बाज़ार गया/गयी", roman: "Kal main bazaar gaya/gayi", english: "Yesterday I went to the market", pronunciation: "kul mayn baa-ZAAR GUH-ya/GUH-yee", context: "Past tense!", speakText: "Kal main bazaar gaya" },
-          { hindi: "यह कितने का है? बहुत महंगा!", roman: "Yeh kitne ka hai? Bahut mahanga!", english: "How much is this? Very expensive!", pronunciation: "yeh KIT-nay kaa hay? ba-HOOT muh-HUN-gaa", context: "Shopping", speakText: "Yeh kitne ka hai? Bahut mahanga!" },
-          { hindi: "कम कीजिए, सौ रुपये दूँगा", roman: "Kam kijiye, sau rupaye dunga", english: "Please reduce, I'll give 100 rupees", pronunciation: "kum KEE-ji-yay, sow roo-PUH-yay DOON-gaa", context: "Bargaining!", speakText: "Kam kijiye, sau rupaye dunga" }
-        ],
-        funFact: "You can now talk about the past AND go shopping in Hindi! Real-world skills!",
-        practice: "Describe a past shopping trip: 'Main bazaar gaya. Bahut cheezein dekhin. Sau rupaye diye!'"
-      },
-      
-      // ===== WEEK 10: Weather, Body & Wrap-up =====
-      "w10-weather": {
-        id: "w10-weather",
-        title: "Weather",
-        category: "Weather",
-        icon: "🌤️",
-        phrases: [
-          { hindi: "आज मौसम कैसा है?", roman: "Aaj mausam kaisa hai?", english: "How's the weather today?", pronunciation: "aaj MOW-sum KAY-saa hay", context: "Weather chat", speakText: "Aaj mausam kaisa hai" },
-          { hindi: "गर्मी है", roman: "Garmi hai", english: "It's hot", pronunciation: "GUR-mee hay", context: "Hot weather", speakText: "Garmi hai" },
-          { hindi: "सर्दी है", roman: "Sardi hai", english: "It's cold", pronunciation: "SUR-dee hay", context: "Cold weather", speakText: "Sardi hai" },
-          { hindi: "बारिश हो रही है", roman: "Baarish ho rahi hai", english: "It's raining", pronunciation: "BAA-rish ho RAH-hee hay", context: "Rainy!", speakText: "Baarish ho rahi hai" },
-          { hindi: "धूप है", roman: "Dhoop hai", english: "It's sunny", pronunciation: "dhoop hay", context: "Sunny", speakText: "Dhoop hai" }
-        ],
-        funFact: "India has extreme weather — 'Bahut garmi hai!' (It's very hot!) is something you'll say a lot in summer!",
-        practice: "Check the weather and describe it: 'Aaj bahut garmi/sardi hai!' or 'Baarish ho rahi hai!'"
-      },
-      
-      "w10-body-basic": {
-        id: "w10-body-basic",
-        title: "Body Parts",
-        category: "Body",
-        icon: "🫀",
-        phrases: [
-          { hindi: "सिर", roman: "Sir", english: "Head", pronunciation: "sir", context: "Body part", speakText: "Sir" },
-          { hindi: "पेट", roman: "Pet", english: "Stomach", pronunciation: "payt", context: "Body part", speakText: "Pet" },
-          { hindi: "हाथ", roman: "Haath", english: "Hand", pronunciation: "haath", context: "Body part", speakText: "Haath" },
-          { hindi: "पैर", roman: "Pair", english: "Foot / Leg", pronunciation: "pyre", context: "Body part", speakText: "Pair" },
-          { hindi: "आँख", roman: "Aankh", english: "Eye", pronunciation: "aankh", context: "Body part", speakText: "Aankh" }
-        ],
-        funFact: "Touching elders' feet ('pair chhuna') is a sign of respect in Indian culture — they bless you in return!",
-        practice: "Point to body parts and name them: 'Yeh mera sir hai, yeh mera haath hai!'"
-      },
-      
-      "w10-health": {
-        id: "w10-health",
-        title: "Health & Pain",
-        category: "Health",
-        icon: "🏥",
-        phrases: [
-          { hindi: "मुझे दर्द हो रहा है", roman: "Mujhe dard ho raha hai", english: "I'm having pain", pronunciation: "MUJ-hay durd ho RAH-ha hay", context: "General pain", speakText: "Mujhe dard ho raha hai" },
-          { hindi: "सिर में दर्द है", roman: "Sir mein dard hai", english: "I have a headache", pronunciation: "sir mayn durd hay", context: "Headache", speakText: "Sir mein dard hai" },
-          { hindi: "पेट में दर्द है", roman: "Pet mein dard hai", english: "I have a stomachache", pronunciation: "payt mayn durd hay", context: "Stomachache", speakText: "Pet mein dard hai" },
-          { hindi: "तबीयत ठीक नहीं है", roman: "Tabiyat theek nahin hai", english: "I'm not feeling well", pronunciation: "tuh-BEE-yut teek na-HEEN hay", context: "Unwell", speakText: "Tabiyat theek nahin hai" }
-        ],
-        funFact: "'Tabiyat' means health/wellbeing. 'Tabiyat kaisi hai?' (How are you feeling?) is more specific than 'Kaise ho?'",
-        practice: "If you ever feel unwell, say: 'Tabiyat theek nahin hai, mujhe aaram chahiye' (I need rest)!"
-      },
-      
-      "w10-polite-advanced": {
-        id: "w10-polite-advanced",
-        title: "Advanced Politeness",
-        category: "Conversation",
-        icon: "🙏",
-        phrases: [
-          { hindi: "आपका बहुत-बहुत शुक्रिया", roman: "Aapka bahut-bahut shukriya", english: "Thank you very very much", pronunciation: "AAP-kaa ba-HOOT ba-HOOT shuk-REE-ya", context: "Big thanks!", speakText: "Aapka bahut bahut shukriya" },
-          { hindi: "कोई बात नहीं, खुशी हुई", roman: "Koi baat nahin, khushi hui", english: "No problem, it was my pleasure", pronunciation: "koy baat na-HEEN, KHOO-shee HOO-ee", context: "Gracious response", speakText: "Koi baat nahin, khushi hui" },
-          { hindi: "आप बहुत अच्छे हैं", roman: "Aap bahut acche hain", english: "You are very kind", pronunciation: "aap ba-HOOT uch-CHAY hayn", context: "Compliment", speakText: "Aap bahut acche hain" },
-          { hindi: "भगवान आपको खुश रखे", roman: "Bhagwan aapko khush rakhe", english: "May God keep you happy", pronunciation: "BHUG-waan AAP-ko khoosh RAKH-ay", context: "Blessing", speakText: "Bhagwan aapko khush rakhe" }
-        ],
-        funFact: "Indians often give blessings as thanks. Elders especially say 'Khush raho' (Stay happy) or 'Jeete raho' (Live long)!",
-        practice: "Thank someone properly: 'Aapka bahut-bahut shukriya, aap bahut acche hain!'"
-      },
-      
-      "w10-conversations": {
-        id: "w10-conversations",
-        title: "Full Conversations",
-        category: "Conversation",
-        icon: "💬",
-        phrases: [
-          { hindi: "बताइए, क्या हाल है?", roman: "Bataiye, kya haal hai?", english: "Tell me, how are things?", pronunciation: "buh-TAI-yay, kyaa haal hay", context: "Opening", speakText: "Bataiye, kya haal hai" },
-          { hindi: "सब कुशल मंगल है", roman: "Sab kushal mangal hai", english: "All is well", pronunciation: "sub KOO-shul MUN-gul hay", context: "Positive response", speakText: "Sab kushal mangal hai" },
-          { hindi: "घर में सब कैसे हैं?", roman: "Ghar mein sab kaise hain?", english: "How is everyone at home?", pronunciation: "gur mayn sub KAY-say hayn", context: "Asking about family", speakText: "Ghar mein sab kaise hain" },
-          { hindi: "सब ठीक हैं, आपकी दुआ से", roman: "Sab theek hain, aapki dua se", english: "Everyone is fine, by your blessings", pronunciation: "sub teek hayn, AAP-kee DOO-ah say", context: "Gracious reply", speakText: "Sab theek hain, aapki dua se" }
-        ],
-        funFact: "'Aapki dua se' (by your blessings) is a beautiful, humble way to say things are going well!",
-        practice: "Have a full greeting exchange using all these phrases with a relative!"
-      },
-      
-      "w10-future": {
-        id: "w10-future",
-        title: "Future Plans",
-        category: "Grammar",
-        icon: "🔮",
-        phrases: [
-          { hindi: "मैं आऊँगा/आऊँगी", roman: "Main aaunga/aaungi", english: "I will come (m/f)", pronunciation: "mayn aa-OON-gaa/aa-OON-gee", context: "Future tense", speakText: "Main aaunga" },
-          { hindi: "कब आओगे?", roman: "Kab aaoge?", english: "When will you come?", pronunciation: "kub AA-oh-gay", context: "You know this!", speakText: "Kab aaoge" },
-          { hindi: "जल्दी मिलेंगे", roman: "Jaldi milenge", english: "We'll meet soon", pronunciation: "JUL-dee mi-LEN-gay", context: "Saying goodbye", speakText: "Jaldi milenge" },
-          { hindi: "इंतज़ार करूँगा/करूँगी", roman: "Intezaar karunga/karungi", english: "I will wait (m/f)", pronunciation: "in-tay-ZAAR kuh-ROON-gaa/kuh-ROON-gee", context: "Looking forward", speakText: "Intezaar karunga" }
-        ],
-        funFact: "The '-unga/-ungi' or '-enge' endings show future tense. 'Main karunga' = I will do, 'Hum karenge' = We will do!",
-        practice: "Make plans: 'Main kal aaunga' (I'll come tomorrow) and 'Hum jaldi milenge' (We'll meet soon)!"
-      },
-      
-      "w10-final60": {
-        id: "w10-final60",
-        title: "60 Days Complete!",
-        category: "Final",
-        icon: "🏆",
-        phrases: [
-          { hindi: "नमस्ते! आप कैसे हैं? सब कुशल मंगल?", roman: "Namaste! Aap kaise hain? Sab kushal mangal?", english: "Hello! How are you? All well?", pronunciation: "nuh-MUS-tay! aap KAY-say hayn? sub KOO-shul MUN-gul", context: "Full greeting", speakText: "Namaste! Aap kaise hain? Sab kushal mangal?" },
-          { hindi: "हाँ जी, सब ठीक है। आपकी दुआ से।", roman: "Haan ji, sab theek hai. Aapki dua se.", english: "Yes, all is well. By your blessings.", pronunciation: "haahn jee, sub teek hay. AAP-kee DOO-ah say", context: "Gracious reply", speakText: "Haan ji, sab theek hai. Aapki dua se." },
-          { hindi: "बहुत अच्छा लगा बात करके। जल्दी मिलेंगे!", roman: "Bahut accha laga baat karke. Jaldi milenge!", english: "It was great talking. See you soon!", pronunciation: "ba-HOOT uch-CHAA LUH-gaa baat KUR-kay. JUL-dee mi-LEN-gay", context: "Goodbye", speakText: "Bahut accha laga baat karke. Jaldi milenge!" }
-        ],
-        funFact: "You've completed 60 days! You now know 200+ phrases covering greetings, family, food, shopping, feelings, health, and more!",
-        practice: "Call a relative in India and have a REAL conversation. You're ready! शाबाश (Shabaash - Well done)!"
-      }
+      "w1-greetings-hello": { id: "w1-greetings-hello", title: "Hello & Goodbye", category: "Greetings", icon: "👋", phrases: [{ hindi: "नमस्ते", roman: "Namaste", english: "Hello / Goodbye", pronunciation: "nuh-MUS-tay", context: "Any time!", speakText: "Namaste" }, { hindi: "नमस्कार", roman: "Namaskar", english: "Respectful Hello", pronunciation: "nuh-mus-KAAR", context: "For elders", speakText: "Namaskar" }, { hindi: "फिर मिलेंगे", roman: "Phir milenge", english: "See you later", pronunciation: "fir mi-LEN-gay", context: "When leaving", speakText: "Phir milenge" }], funFact: "Namaste means 'I bow to you' — it shows respect and is used for both hello AND goodbye!", practice: "Say Namaste to everyone at home today, with your hands pressed together!" },
+      "w1-greetings-howareyou": { id: "w1-greetings-howareyou", title: "How Are You?", category: "Greetings", icon: "💬", phrases: [{ hindi: "आप कैसे हैं?", roman: "Aap kaise hain?", english: "How are you? (respectful)", pronunciation: "aap KAY-say hayn", context: "For elders", speakText: "Aap kaise hain" }, { hindi: "तुम कैसे हो?", roman: "Tum kaise ho?", english: "How are you? (friendly)", pronunciation: "tum KAY-say ho", context: "For friends", speakText: "Tum kaise ho" }, { hindi: "मैं ठीक हूँ", roman: "Main theek hoon", english: "I am fine", pronunciation: "mayn teek hoon", context: "Common reply", speakText: "Main theek hoon" }, { hindi: "बहुत अच्छा", roman: "Bahut accha", english: "Very good", pronunciation: "ba-HOOT uch-CHAA", context: "Great!", speakText: "Bahut accha" }], funFact: "Hindi has formal (aap) and informal (tum) versions of 'you' — use 'aap' with elders!", practice: "Ask a relative 'Aap kaise hain?' and respond with 'Main theek hoon'!" },
+      "w1-manners-thanks": { id: "w1-manners-thanks", title: "Please & Thank You", category: "Manners", icon: "🙏", phrases: [{ hindi: "शुक्रिया", roman: "Shukriya", english: "Thank you", pronunciation: "shuk-REE-ya", context: "Everyday", speakText: "Shukriya" }, { hindi: "धन्यवाद", roman: "Dhanyavaad", english: "Thank you (formal)", pronunciation: "dun-ya-VAAD", context: "More formal", speakText: "Dhanyavaad" }, { hindi: "कृपया", roman: "Kripaya", english: "Please", pronunciation: "kri-PU-ya", context: "Being polite", speakText: "Kripaya" }], funFact: "'Shukriya' comes from Arabic. 'Dhanyavaad' is the Sanskrit-origin word!", practice: "Use Shukriya at least 5 times today!" },
+      "w1-numbers-1to5": { id: "w1-numbers-1to5", title: "Numbers 1-5", category: "Numbers", icon: "🔢", phrases: [{ hindi: "एक", roman: "Ek", english: "One (1)", pronunciation: "ek", context: "1", speakText: "Ek" }, { hindi: "दो", roman: "Do", english: "Two (2)", pronunciation: "doh", context: "2", speakText: "Do" }, { hindi: "तीन", roman: "Teen", english: "Three (3)", pronunciation: "teen", context: "3", speakText: "Teen" }, { hindi: "चार", roman: "Chaar", english: "Four (4)", pronunciation: "chaar", context: "4", speakText: "Chaar" }, { hindi: "पाँच", roman: "Paanch", english: "Five (5)", pronunciation: "paanch", context: "5", speakText: "Paanch" }], funFact: "Hindi numbers are used all over India!", practice: "Count your fingers: Ek, do, teen, chaar, paanch!" },
+      "w1-numbers-6to10": { id: "w1-numbers-6to10", title: "Numbers 6-10", category: "Numbers", icon: "🔢", phrases: [{ hindi: "छह", roman: "Chhe", english: "Six (6)", pronunciation: "cheh", context: "6", speakText: "Chhe" }, { hindi: "सात", roman: "Saat", english: "Seven (7)", pronunciation: "saat", context: "7", speakText: "Saat" }, { hindi: "आठ", roman: "Aath", english: "Eight (8)", pronunciation: "aath", context: "8", speakText: "Aath" }, { hindi: "नौ", roman: "Nau", english: "Nine (9)", pronunciation: "now", context: "9", speakText: "Nau" }, { hindi: "दस", roman: "Das", english: "Ten (10)", pronunciation: "dus", context: "10", speakText: "Das" }], funFact: "Now you can count to 10! 'Das' means ten.", practice: "Count backwards from das to ek!" },
+      "w1-identity-aboutme": { id: "w1-identity-aboutme", title: "About Me", category: "Identity", icon: "🙋", phrases: [{ hindi: "मेरा नाम ___ है", roman: "Mera naam ___ hai", english: "My name is ___", pronunciation: "MAY-ra naam ___ hay", context: "Introduce!", speakText: "Mera naam hai" }, { hindi: "मैं ___ साल का हूँ", roman: "Main ___ saal ka hoon", english: "I am ___ years old (boy)", pronunciation: "mayn ___ saal kaa hoon", context: "For boys", speakText: "Main saat saal ka hoon" }, { hindi: "मैं ___ साल की हूँ", roman: "Main ___ saal ki hoon", english: "I am ___ years old (girl)", pronunciation: "mayn ___ saal kee hoon", context: "For girls", speakText: "Main saat saal ki hoon" }, { hindi: "मैं खुश हूँ", roman: "Main khush hoon", english: "I am happy", pronunciation: "mayn khoosh hoon", context: "Feelings!", speakText: "Main khush hoon" }], funFact: "Hindi changes some words for boys (ka) and girls (ki)!", practice: "Tell a relative: 'Mera naam ___ hai. Main ___ saal ka/ki hoon.'" },
+      "w1-review": { id: "w1-review", title: "Week 1 Review", category: "Review", icon: "⭐", phrases: [{ hindi: "नमस्ते, आप कैसे हैं?", roman: "Namaste, aap kaise hain?", english: "Hello, how are you?", pronunciation: "nuh-MUS-tay, aap KAY-say hayn", context: "Full greeting!", speakText: "Namaste, aap kaise hain" }, { hindi: "मैं ठीक हूँ, शुक्रिया", roman: "Main theek hoon, shukriya", english: "I am fine, thank you", pronunciation: "mayn teek hoon, shuk-REE-ya", context: "Polite response", speakText: "Main theek hoon, shukriya" }, { hindi: "एक, दो, तीन, चार, पाँच", roman: "Ek, do, teen, chaar, paanch", english: "1, 2, 3, 4, 5", pronunciation: "ek, doh, teen, chaar, paanch", context: "Count!", speakText: "Ek, do, teen, chaar, paanch" }], funFact: "You've learned greetings, manners, numbers 1-10, and how to introduce yourself!", practice: "Have a mini conversation with a relative!" },
+      "w2-basics-yesno": { id: "w2-basics-yesno", title: "Yes, No & Sorry", category: "Basics", icon: "✅", phrases: [{ hindi: "हाँ", roman: "Haan", english: "Yes", pronunciation: "haahn", context: "Simple yes", speakText: "Haan" }, { hindi: "जी हाँ", roman: "Ji haan", english: "Yes (respectful)", pronunciation: "jee haahn", context: "For elders", speakText: "Ji haan" }, { hindi: "नहीं", roman: "Nahin", english: "No", pronunciation: "na-HEEN", context: "Simple no", speakText: "Nahin" }, { hindi: "जी नहीं", roman: "Ji nahin", english: "No (respectful)", pronunciation: "jee na-HEEN", context: "For elders", speakText: "Ji nahin" }, { hindi: "माफ़ कीजिए", roman: "Maaf kijiye", english: "Sorry / Excuse me", pronunciation: "maaf KEE-ji-yay", context: "Very polite", speakText: "Maaf kijiye" }], funFact: "'Ji' is a magic word — add it to almost anything to be more polite!", practice: "Practice saying 'Ji haan' and 'Ji nahin' today!" },
+      "w2-family-parents": { id: "w2-family-parents", title: "Parents & Siblings", category: "Family", icon: "👪", phrases: [{ hindi: "मम्मी / माँ", roman: "Mummy / Maa", english: "Mum / Mother", pronunciation: "MUM-ee / maa", context: "Mummy is common!", speakText: "Mummy" }, { hindi: "पापा / पिता", roman: "Papa / Pita", english: "Dad / Father", pronunciation: "PAA-paa", context: "Papa is everyday", speakText: "Papa" }, { hindi: "भाई", roman: "Bhai", english: "Brother", pronunciation: "bhaai", context: "Also for friends!", speakText: "Bhai" }, { hindi: "बहन", roman: "Behen", english: "Sister", pronunciation: "beh-HEN", context: "Also for friends!", speakText: "Behen" }], funFact: "You might call any older boy 'bhai' and older girl 'behen' even if not related!", practice: "Tell a relative about your family using these words!" },
+      "w2-family-grandparents": { id: "w2-family-grandparents", title: "Grandparents", category: "Family", icon: "👵", phrases: [{ hindi: "दादा", roman: "Dada", english: "Grandfather (dad's side)", pronunciation: "DAA-daa", context: "Father's father", speakText: "Dada" }, { hindi: "दादी", roman: "Dadi", english: "Grandmother (dad's side)", pronunciation: "DAA-dee", context: "Father's mother", speakText: "Dadi" }, { hindi: "नाना", roman: "Nana", english: "Grandfather (mum's side)", pronunciation: "NAA-naa", context: "Mother's father", speakText: "Nana" }, { hindi: "नानी", roman: "Nani", english: "Grandmother (mum's side)", pronunciation: "NAA-nee", context: "Mother's mother", speakText: "Nani" }], funFact: "Hindi has different words for grandparents from each side of the family!", practice: "Call your grandparents by their Hindi names today!" },
+      "w2-family-auntsuncles": { id: "w2-family-auntsuncles", title: "Aunts & Uncles", category: "Family", icon: "👫", phrases: [{ hindi: "चाचा", roman: "Chacha", english: "Uncle (dad's younger brother)", pronunciation: "CHAA-chaa", context: "Father's younger bro", speakText: "Chacha" }, { hindi: "चाची", roman: "Chachi", english: "Chacha's wife", pronunciation: "CHAA-chee", context: "His wife", speakText: "Chachi" }, { hindi: "मामा", roman: "Mama", english: "Uncle (mum's brother)", pronunciation: "MAA-maa", context: "Mother's brother", speakText: "Mama" }, { hindi: "मामी", roman: "Mami", english: "Mama's wife", pronunciation: "MAA-mee", context: "His wife", speakText: "Mami" }], funFact: "Hindi has SO many words for aunts and uncles!", practice: "Work out what to call your aunts and uncles in Hindi!" },
+      "w2-expressions-wantlike": { id: "w2-expressions-wantlike", title: "I Want & I Like", category: "Expressions", icon: "❤️", phrases: [{ hindi: "मुझे चाहिए", roman: "Mujhe chahiye", english: "I want / I need", pronunciation: "MUJ-hay chaa-HI-yay", context: "Asking for things", speakText: "Mujhe chahiye" }, { hindi: "मुझे पसंद है", roman: "Mujhe pasand hai", english: "I like", pronunciation: "MUJ-hay puh-SUND hay", context: "Expressing likes", speakText: "Mujhe pasand hai" }, { hindi: "मुझे नहीं चाहिए", roman: "Mujhe nahin chahiye", english: "I don't want", pronunciation: "MUJ-hay na-HEEN chaa-HI-yay", context: "Declining", speakText: "Mujhe nahin chahiye" }], funFact: "'Mujhe pasand hai' literally means 'it is liked to me'!", practice: "Tell someone what you want using 'Mujhe ___ chahiye'!" },
+      "w2-vocab-things": { id: "w2-vocab-things", title: "Common Things", category: "Vocabulary", icon: "📦", phrases: [{ hindi: "पानी", roman: "Paani", english: "Water", pronunciation: "PAA-nee", context: "Very useful!", speakText: "Paani" }, { hindi: "खाना", roman: "Khana", english: "Food", pronunciation: "KHAA-naa", context: "Meals", speakText: "Khana" }, { hindi: "दूध", roman: "Doodh", english: "Milk", pronunciation: "doodh", context: "Drink", speakText: "Doodh" }, { hindi: "चाय", roman: "Chai", english: "Tea", pronunciation: "chaai", context: "Very popular!", speakText: "Chai" }], funFact: "'Chai' is so important in India — offering tea is a sign of hospitality!", practice: "Ask for water: 'Mujhe paani chahiye'!" },
+      "w2-review": { id: "w2-review", title: "Week 2 Review", category: "Review", icon: "⭐", phrases: [{ hindi: "मुझे पानी चाहिए", roman: "Mujhe paani chahiye", english: "I want water", pronunciation: "MUJ-hay PAA-nee chaa-HI-yay", context: "Useful!", speakText: "Mujhe paani chahiye" }, { hindi: "जी हाँ, शुक्रिया", roman: "Ji haan, shukriya", english: "Yes please, thank you", pronunciation: "jee haahn, shuk-REE-ya", context: "Polite", speakText: "Ji haan, shukriya" }, { hindi: "नमस्ते दादी", roman: "Namaste Dadi", english: "Hello Grandmother", pronunciation: "nuh-MUS-tay DAA-dee", context: "Greeting family!", speakText: "Namaste Dadi" }], funFact: "You now know family members, basic needs, and polite expressions!", practice: "Greet a family member by their Hindi title!" },
+      "w3-actions-comego": { id: "w3-actions-comego", title: "Come & Go", category: "Actions", icon: "🚶", phrases: [{ hindi: "आओ", roman: "Aao", english: "Come (friendly)", pronunciation: "AA-oh", context: "To friends", speakText: "Aao" }, { hindi: "आइए", roman: "Aaiye", english: "Come (respectful)", pronunciation: "AA-i-yay", context: "To elders", speakText: "Aaiye" }, { hindi: "जाओ", roman: "Jao", english: "Go (friendly)", pronunciation: "JAA-oh", context: "To friends", speakText: "Jao" }, { hindi: "चलो", roman: "Chalo", english: "Let's go!", pronunciation: "CHUH-lo", context: "Very common!", speakText: "Chalo" }], funFact: "'Chalo' is one of the most useful Hindi words!", practice: "Say 'Chalo!' when it's time to leave!" },
+      "w3-directions-herethere": { id: "w3-directions-herethere", title: "Here, There & Where", category: "Directions", icon: "📍", phrases: [{ hindi: "यहाँ", roman: "Yahan", english: "Here", pronunciation: "ya-HAAN", context: "This place", speakText: "Yahan" }, { hindi: "वहाँ", roman: "Wahan", english: "There", pronunciation: "wa-HAAN", context: "That place", speakText: "Wahan" }, { hindi: "कहाँ?", roman: "Kahan?", english: "Where?", pronunciation: "ka-HAAN", context: "Asking location", speakText: "Kahan" }, { hindi: "___ कहाँ है?", roman: "___ kahan hai?", english: "Where is ___?", pronunciation: "___ ka-HAAN hay", context: "Finding things", speakText: "Paani kahan hai" }], funFact: "Yahan, wahan, kahan — they all rhyme!", practice: "Ask 'Paani kahan hai?'" },
+      "w3-vocab-places1": { id: "w3-vocab-places1", title: "Places", category: "Vocabulary", icon: "🏫", phrases: [{ hindi: "घर", roman: "Ghar", english: "Home / House", pronunciation: "gur", context: "Your home", speakText: "Ghar" }, { hindi: "स्कूल", roman: "School", english: "School", pronunciation: "school", context: "Same word!", speakText: "School" }, { hindi: "दुकान", roman: "Dukaan", english: "Shop", pronunciation: "doo-KAAN", context: "Store", speakText: "Dukaan" }, { hindi: "मंदिर", roman: "Mandir", english: "Temple", pronunciation: "MUN-dir", context: "Hindu temple", speakText: "Mandir" }], funFact: "Many English words like 'school' are used in Hindi too!", practice: "Say where you're going: 'Main school jaa raha hoon'!" },
+      "w3-vocab-places2": { id: "w3-vocab-places2", title: "More Places", category: "Vocabulary", icon: "🏥", phrases: [{ hindi: "हॉस्पिटल", roman: "Hospital", english: "Hospital", pronunciation: "HOS-pi-tul", context: "Same word!", speakText: "Hospital" }, { hindi: "स्टेशन", roman: "Station", english: "Station", pronunciation: "STAY-shun", context: "Train/bus", speakText: "Station" }, { hindi: "बाज़ार", roman: "Bazaar", english: "Market", pronunciation: "baa-ZAAR", context: "Shopping area", speakText: "Bazaar" }, { hindi: "पार्क", roman: "Park", english: "Park", pronunciation: "park", context: "Same word!", speakText: "Park" }], funFact: "'Bazaar' is an Urdu/Persian word that English borrowed!", practice: "Ask: 'Station kahan hai?'" },
+      "w3-needs-hungrythirsty": { id: "w3-needs-hungrythirsty", title: "Hungry & Thirsty", category: "Needs", icon: "🍽️", phrases: [{ hindi: "मुझे भूख लगी है", roman: "Mujhe bhookh lagi hai", english: "I am hungry", pronunciation: "MUJ-hay bhookh LUH-gee hay", context: "Hungry!", speakText: "Mujhe bhookh lagi hai" }, { hindi: "मुझे प्यास लगी है", roman: "Mujhe pyaas lagi hai", english: "I am thirsty", pronunciation: "MUJ-hay pyaas LUH-gee hay", context: "Need drink", speakText: "Mujhe pyaas lagi hai" }, { hindi: "खाना खाओ", roman: "Khana khao", english: "Eat food", pronunciation: "KHAA-naa KHAA-oh", context: "Invitation", speakText: "Khana khao" }], funFact: "In Hindi you say 'hunger has attached to me'!", practice: "Before meals, say 'Mujhe bhookh lagi hai!'" },
+      "w3-actions-givetake": { id: "w3-actions-givetake", title: "Give & Take", category: "Actions", icon: "🤲", phrases: [{ hindi: "दो", roman: "Do", english: "Give (friendly)", pronunciation: "doh", context: "Same as two!", speakText: "Do" }, { hindi: "दीजिए", roman: "Dijiye", english: "Please give (respectful)", pronunciation: "DEE-ji-yay", context: "To elders", speakText: "Dijiye" }, { hindi: "लो", roman: "Lo", english: "Take (friendly)", pronunciation: "loh", context: "Here, take it", speakText: "Lo" }, { hindi: "लीजिए", roman: "Lijiye", english: "Please take (respectful)", pronunciation: "LEE-ji-yay", context: "Offering", speakText: "Lijiye" }], funFact: "'Do' means both 'two' AND 'give'! Context tells you which.", practice: "Ask politely: 'Paani dijiye'!" },
+      "w3-review": { id: "w3-review", title: "Week 3 Review", category: "Review", icon: "⭐", phrases: [{ hindi: "चलो घर", roman: "Chalo ghar", english: "Let's go home", pronunciation: "CHUH-lo gur", context: "Time to go!", speakText: "Chalo ghar" }, { hindi: "मुझे भूख लगी है, खाना कहाँ है?", roman: "Mujhe bhookh lagi hai, khana kahan hai?", english: "I'm hungry, where's the food?", pronunciation: "MUJ-hay bhookh LUH-gee hay, KHAA-naa ka-HAAN hay", context: "Useful combo!", speakText: "Mujhe bhookh lagi hai, khana kahan hai" }, { hindi: "पानी दीजिए", roman: "Paani dijiye", english: "Please give water", pronunciation: "PAA-nee DEE-ji-yay", context: "Polite request", speakText: "Paani dijiye" }], funFact: "You can now talk about places, ask for things, and express needs!", practice: "At mealtime, use only Hindi!" },
+      "w4-questions-whatwhy": { id: "w4-questions-whatwhy", title: "What & Why", category: "Questions", icon: "❓", phrases: [{ hindi: "क्या?", roman: "Kya?", english: "What?", pronunciation: "kyaa", context: "Asking what", speakText: "Kya" }, { hindi: "यह क्या है?", roman: "Yeh kya hai?", english: "What is this?", pronunciation: "yeh kyaa hay", context: "Pointing", speakText: "Yeh kya hai" }, { hindi: "क्यों?", roman: "Kyon?", english: "Why?", pronunciation: "kyohn", context: "Asking why", speakText: "Kyon" }, { hindi: "क्या हुआ?", roman: "Kya hua?", english: "What happened?", pronunciation: "kyaa HOO-ah", context: "Very common!", speakText: "Kya hua" }], funFact: "'Kya hua' is the Hindi 'what's up?'!", practice: "Point at things and ask 'Yeh kya hai?'" },
+      "w4-questions-whenwho": { id: "w4-questions-whenwho", title: "When & Who", category: "Questions", icon: "🕐", phrases: [{ hindi: "कब?", roman: "Kab?", english: "When?", pronunciation: "kub", context: "Asking time", speakText: "Kab" }, { hindi: "कौन?", roman: "Kaun?", english: "Who?", pronunciation: "kown", context: "Asking who", speakText: "Kaun" }, { hindi: "यह कौन है?", roman: "Yeh kaun hai?", english: "Who is this?", pronunciation: "yeh kown hay", context: "About people", speakText: "Yeh kaun hai" }, { hindi: "कब आओगे?", roman: "Kab aaoge?", english: "When will you come?", pronunciation: "kub AA-oh-gay", context: "Asking arrival", speakText: "Kab aaoge" }], funFact: "All Hindi question words start with 'K': Kya, Kyon, Kab, Kahan, Kaun, Kaise!", practice: "Learn the K-pattern!" },
+      "w4-time-words": { id: "w4-time-words", title: "Time Words", category: "Time", icon: "📅", phrases: [{ hindi: "आज", roman: "Aaj", english: "Today", pronunciation: "aaj", context: "This day", speakText: "Aaj" }, { hindi: "कल", roman: "Kal", english: "Yesterday / Tomorrow", pronunciation: "kul", context: "Context matters!", speakText: "Kal" }, { hindi: "अभी", roman: "Abhi", english: "Now / Right now", pronunciation: "ub-HEE", context: "This moment", speakText: "Abhi" }, { hindi: "बाद में", roman: "Baad mein", english: "Later", pronunciation: "baad mayn", context: "After some time", speakText: "Baad mein" }], funFact: "'Kal' means BOTH yesterday AND tomorrow!", practice: "Say 'Aaj main khush hoon' (Today I am happy)!" },
+      "w4-conversation-smalltalk": { id: "w4-conversation-smalltalk", title: "Small Talk", category: "Conversation", icon: "💭", phrases: [{ hindi: "अच्छा", roman: "Accha", english: "Good / OK / Really?", pronunciation: "uch-CHAA", context: "Multi-purpose!", speakText: "Accha" }, { hindi: "ठीक है", roman: "Theek hai", english: "OK / It's fine", pronunciation: "teek hay", context: "Agreement", speakText: "Theek hai" }, { hindi: "पता नहीं", roman: "Pata nahin", english: "I don't know", pronunciation: "PUH-taa na-HEEN", context: "Uncertainty", speakText: "Pata nahin" }, { hindi: "समझ गया/गयी", roman: "Samajh gaya/gayi", english: "I understood", pronunciation: "suh-MUJH GUH-ya", context: "gaya=boy, gayi=girl", speakText: "Samajh gaya" }], funFact: "'Accha' is possibly the most versatile Hindi word!", practice: "React to things with 'Accha!' today!" },
+      "w4-conversation-phone": { id: "w4-conversation-phone", title: "Phone & Video Calls", category: "Conversation", icon: "📱", phrases: [{ hindi: "हैलो", roman: "Hello", english: "Hello (phone)", pronunciation: "heh-LOH", context: "Answering", speakText: "Hello" }, { hindi: "सुनाई दे रहा है?", roman: "Sunai de raha hai?", english: "Can you hear me?", pronunciation: "soo-NAI day RAH-ha hay", context: "Video calls!", speakText: "Sunai de raha hai" }, { hindi: "दिखाई दे रहा है?", roman: "Dikhai de raha hai?", english: "Can you see me?", pronunciation: "dik-HAI day RAH-ha hay", context: "Video calls!", speakText: "Dikhai de raha hai" }, { hindi: "बाद में बात करते हैं", roman: "Baad mein baat karte hain", english: "Let's talk later", pronunciation: "baad mayn baat KUR-tay hayn", context: "Ending call", speakText: "Baad mein baat karte hain" }], funFact: "Perfect for video calls with relatives in India!", practice: "Use these on your next family video call!" },
+      "w4-emotions-feelings": { id: "w4-emotions-feelings", title: "Feelings", category: "Emotions", icon: "😊", phrases: [{ hindi: "खुश", roman: "Khush", english: "Happy", pronunciation: "khoosh", context: "Feeling good", speakText: "Main khush hoon" }, { hindi: "थका हुआ", roman: "Thaka hua", english: "Tired", pronunciation: "TUH-kaa HOO-ah", context: "Need rest", speakText: "Main thaka hua hoon" }, { hindi: "बोर", roman: "Bor", english: "Bored", pronunciation: "bohr", context: "Same word!", speakText: "Main bor hoon" }, { hindi: "ठंडा", roman: "Thanda", english: "Cold", pronunciation: "TUN-daa", context: "Temperature", speakText: "Mujhe thanda lag raha hai" }], funFact: "English words like 'bored' are commonly used in Hindi!", practice: "Tell someone how you feel using 'Main ___ hoon'!" },
+      "w4-review": { id: "w4-review", title: "Week 4 Review", category: "Review", icon: "⭐", phrases: [{ hindi: "आज क्या हुआ?", roman: "Aaj kya hua?", english: "What happened today?", pronunciation: "aaj kyaa HOO-ah", context: "About day", speakText: "Aaj kya hua" }, { hindi: "सब ठीक है", roman: "Sab theek hai", english: "Everything is fine", pronunciation: "sub teek hay", context: "Common response", speakText: "Sab theek hai" }, { hindi: "कल बात करते हैं", roman: "Kal baat karte hain", english: "Let's talk tomorrow", pronunciation: "kul baat KUR-tay hayn", context: "Saying bye", speakText: "Kal baat karte hain" }], funFact: "You now have all the building blocks for real Hindi conversations!", practice: "Have a 2-minute Hindi-only conversation!" },
+      "w5-phrases-useful": { id: "w5-phrases-useful", title: "Useful Expressions", category: "Phrases", icon: "💬", phrases: [{ hindi: "कोई बात नहीं", roman: "Koi baat nahin", english: "No problem / It's OK", pronunciation: "koy baat na-HEEN", context: "Very useful!", speakText: "Koi baat nahin" }, { hindi: "बहुत बढ़िया", roman: "Bahut badhiya", english: "Excellent", pronunciation: "ba-HOOT buh-DEE-ya", context: "Praise!", speakText: "Bahut badhiya" }, { hindi: "एक मिनट", roman: "Ek minute", english: "One minute / Wait", pronunciation: "ek MIN-it", context: "Asking to wait", speakText: "Ek minute" }, { hindi: "फिर से", roman: "Phir se", english: "Again", pronunciation: "fir say", context: "Repeat", speakText: "Phir se" }], funFact: "'Koi baat nahin' is the Hindi 'no worries'!", practice: "Use 'Bahut badhiya!' to praise someone today!" },
+      "w5-final": { id: "w5-final", title: "30 Days Complete!", category: "Milestone", icon: "🎉", phrases: [{ hindi: "नमस्ते! आप कैसे हैं?", roman: "Namaste! Aap kaise hain?", english: "Hello! How are you?", pronunciation: "nuh-MUS-tay! aap KAY-say hayn", context: "Greeting", speakText: "Namaste! Aap kaise hain" }, { hindi: "मैं ठीक हूँ, आप सुनाइए", roman: "Main theek hoon, aap sunaiye", english: "I'm fine, tell me about you", pronunciation: "mayn teek hoon, aap soo-NAI-yay", context: "Polite response", speakText: "Main theek hoon, aap sunaiye" }, { hindi: "बहुत अच्छा लगा आपसे मिलके", roman: "Bahut accha laga aapse milke", english: "Great to meet you", pronunciation: "ba-HOOT uch-CHAA LUH-gaa AAP-say MIL-kay", context: "Goodbye", speakText: "Bahut accha laga aapse milke" }], funFact: "You've completed 30 days of Hindi! You know 100+ phrases!", practice: "Call a relative and have a full Hindi conversation!" },
+      "w6-numbers-11to15": { id: "w6-numbers-11to15", title: "Numbers 11-15", category: "Numbers", icon: "🔢", phrases: [{ hindi: "ग्यारह", roman: "Gyaarah", english: "Eleven (11)", pronunciation: "GYAA-ruh", context: "11", speakText: "Gyaarah" }, { hindi: "बारह", roman: "Baarah", english: "Twelve (12)", pronunciation: "BAA-ruh", context: "12", speakText: "Baarah" }, { hindi: "तेरह", roman: "Terah", english: "Thirteen (13)", pronunciation: "TAY-ruh", context: "13", speakText: "Terah" }, { hindi: "चौदह", roman: "Chaudah", english: "Fourteen (14)", pronunciation: "CHOW-duh", context: "14", speakText: "Chaudah" }, { hindi: "पंद्रह", roman: "Pandrah", english: "Fifteen (15)", pronunciation: "PUN-druh", context: "15", speakText: "Pandrah" }], funFact: "Hindi numbers 11-19 don't follow a simple pattern — each is unique!", practice: "Practice: 'Main baarah saal ka/ki hoon' (I am 12 years old)." },
+      "w6-numbers-16to20": { id: "w6-numbers-16to20", title: "Numbers 16-20", category: "Numbers", icon: "🔢", phrases: [{ hindi: "सोलह", roman: "Solah", english: "Sixteen (16)", pronunciation: "SOH-luh", context: "16", speakText: "Solah" }, { hindi: "सत्रह", roman: "Satrah", english: "Seventeen (17)", pronunciation: "SUT-ruh", context: "17", speakText: "Satrah" }, { hindi: "अठारह", roman: "Athaarah", english: "Eighteen (18)", pronunciation: "uh-THAA-ruh", context: "18", speakText: "Athaarah" }, { hindi: "उन्नीस", roman: "Unnis", english: "Nineteen (19)", pronunciation: "oon-NEES", context: "19", speakText: "Unnis" }, { hindi: "बीस", roman: "Bees", english: "Twenty (20)", pronunciation: "bees", context: "20", speakText: "Bees" }], funFact: "'Bees' (20) is easy to remember!", practice: "Count from ek to bees without looking!" },
+      "w6-descriptions-bigsmall": { id: "w6-descriptions-bigsmall", title: "Big & Small", category: "Descriptions", icon: "📏", phrases: [{ hindi: "बड़ा", roman: "Bada", english: "Big (masculine)", pronunciation: "BUH-daa", context: "For masculine", speakText: "Bada" }, { hindi: "बड़ी", roman: "Badi", english: "Big (feminine)", pronunciation: "BUH-dee", context: "For feminine", speakText: "Badi" }, { hindi: "छोटा", roman: "Chhota", english: "Small (masculine)", pronunciation: "CHO-taa", context: "For masculine", speakText: "Chhota" }, { hindi: "छोटी", roman: "Chhoti", english: "Small (feminine)", pronunciation: "CHO-tee", context: "For feminine", speakText: "Chhoti" }], funFact: "Adjectives change based on the noun's gender!", practice: "Point at things: 'Yeh bada hai' or 'Yeh chhota hai'!" },
+      "w6-descriptions-goodbad": { id: "w6-descriptions-goodbad", title: "Good & Bad", category: "Descriptions", icon: "👍", phrases: [{ hindi: "अच्छा", roman: "Accha", english: "Good (masculine)", pronunciation: "uch-CHAA", context: "Also means OK!", speakText: "Accha" }, { hindi: "अच्छी", roman: "Acchi", english: "Good (feminine)", pronunciation: "uch-CHEE", context: "For feminine", speakText: "Acchi" }, { hindi: "बुरा", roman: "Bura", english: "Bad (masculine)", pronunciation: "BOO-raa", context: "Negative", speakText: "Bura" }, { hindi: "बुरी", roman: "Buri", english: "Bad (feminine)", pronunciation: "BOO-ree", context: "For feminine", speakText: "Buri" }, { hindi: "ठीक-ठाक", roman: "Theek-thaak", english: "So-so / Okay", pronunciation: "teek-TAAK", context: "Not great, not bad", speakText: "Theek thaak" }], funFact: "'Accha' can mean good, okay, really?, I see, or a filler word!", practice: "React to food: 'Bahut accha!' or 'Theek-thaak hai'." },
+      "w6-descriptions-hotcold": { id: "w6-descriptions-hotcold", title: "Hot & Cold", category: "Descriptions", icon: "🌡️", phrases: [{ hindi: "गरम", roman: "Garam", english: "Hot", pronunciation: "GUH-rum", context: "Temperature", speakText: "Garam" }, { hindi: "ठंडा", roman: "Thanda", english: "Cold (masculine)", pronunciation: "TUN-daa", context: "Temperature", speakText: "Thanda" }, { hindi: "ठंडी", roman: "Thandi", english: "Cold (feminine)", pronunciation: "TUN-dee", context: "For feminine", speakText: "Thandi" }, { hindi: "गरम चाय", roman: "Garam chai", english: "Hot tea", pronunciation: "GUH-rum chaai", context: "Common!", speakText: "Garam chai" }, { hindi: "ठंडा पानी", roman: "Thanda paani", english: "Cold water", pronunciation: "TUN-daa PAA-nee", context: "Very useful!", speakText: "Thanda paani" }], funFact: "'Garam' doesn't change for gender, but 'thanda/thandi' does.", practice: "Order: 'Mujhe thanda paani chahiye'!" },
+      "w6-colours-basic": { id: "w6-colours-basic", title: "Basic Colours", category: "Colours", icon: "🎨", phrases: [{ hindi: "लाल", roman: "Laal", english: "Red", pronunciation: "laal", context: "Colour", speakText: "Laal" }, { hindi: "नीला", roman: "Neela", english: "Blue (masculine)", pronunciation: "NEE-laa", context: "Changes to neeli", speakText: "Neela" }, { hindi: "हरा", roman: "Hara", english: "Green (masculine)", pronunciation: "HUH-raa", context: "Changes to hari", speakText: "Hara" }, { hindi: "पीला", roman: "Peela", english: "Yellow (masculine)", pronunciation: "PEE-laa", context: "Changes to peeli", speakText: "Peela" }, { hindi: "सफ़ेद", roman: "Safed", english: "White", pronunciation: "suh-FAYD", context: "No gender change", speakText: "Safed" }], funFact: "Some colours change for gender (neela→neeli) but 'laal' stays the same!", practice: "Point at things: 'Yeh laal hai'!" },
+      "w6-review": { id: "w6-review", title: "Week 6 Review", category: "Review", icon: "⭐", phrases: [{ hindi: "मुझे ठंडा पानी चाहिए", roman: "Mujhe thanda paani chahiye", english: "I want cold water", pronunciation: "MUJ-hay TUN-daa PAA-nee chaa-HI-yay", context: "Useful!", speakText: "Mujhe thanda paani chahiye" }, { hindi: "यह बहुत अच्छा है", roman: "Yeh bahut accha hai", english: "This is very good", pronunciation: "yeh ba-HOOT uch-CHAA hay", context: "Compliment!", speakText: "Yeh bahut accha hai" }, { hindi: "वह बड़ा नीला घर है", roman: "Woh bada neela ghar hai", english: "That is a big blue house", pronunciation: "woh BUH-daa NEE-laa gur hay", context: "Describing!", speakText: "Woh bada neela ghar hai" }], funFact: "You can now count to 20 and describe things!", practice: "Describe 5 things around you using size, quality, and colour!" },
+      "w7-food-meals": { id: "w7-food-meals", title: "Meals", category: "Food", icon: "🍽️", phrases: [{ hindi: "नाश्ता", roman: "Naashta", english: "Breakfast", pronunciation: "NAASH-taa", context: "Morning", speakText: "Naashta" }, { hindi: "दोपहर का खाना", roman: "Dopahar ka khana", english: "Lunch", pronunciation: "doh-PUH-hur kaa KHAA-naa", context: "Midday", speakText: "Dopahar ka khana" }, { hindi: "रात का खाना", roman: "Raat ka khana", english: "Dinner", pronunciation: "raat kaa KHAA-naa", context: "Night", speakText: "Raat ka khana" }, { hindi: "खाना खा लिया?", roman: "Khana kha liya?", english: "Have you eaten?", pronunciation: "KHAA-naa khaa LI-yaa", context: "Common question!", speakText: "Khana kha liya" }], funFact: "'Khana kha liya?' is how Indians show they care!", practice: "Ask family 'Naashta kha liya?' tomorrow morning!" },
+      "w7-food-dishes": { id: "w7-food-dishes", title: "Common Dishes", category: "Food", icon: "🍛", phrases: [{ hindi: "रोटी", roman: "Roti", english: "Flatbread", pronunciation: "ROH-tee", context: "Staple", speakText: "Roti" }, { hindi: "चावल", roman: "Chaawal", english: "Rice", pronunciation: "CHAA-wul", context: "Staple", speakText: "Chaawal" }, { hindi: "दाल", roman: "Daal", english: "Lentils", pronunciation: "daal", context: "Protein", speakText: "Daal" }, { hindi: "सब्ज़ी", roman: "Sabzi", english: "Vegetable dish", pronunciation: "SUB-zee", context: "Cooked veggies", speakText: "Sabzi" }, { hindi: "दाल-चावल", roman: "Daal-chaawal", english: "Lentils and rice", pronunciation: "daal-CHAA-wul", context: "Classic!", speakText: "Daal chaawal" }], funFact: "'Daal-chaawal' is comfort food for most Indians!", practice: "At dinner: 'Yeh roti hai, yeh sabzi hai'!" },
+      "w7-food-tastes": { id: "w7-food-tastes", title: "Tastes", category: "Food", icon: "😋", phrases: [{ hindi: "मीठा", roman: "Meetha", english: "Sweet", pronunciation: "MEE-taa", context: "Taste", speakText: "Meetha" }, { hindi: "नमकीन", roman: "Namkeen", english: "Salty", pronunciation: "num-KEEN", context: "Also: snacks", speakText: "Namkeen" }, { hindi: "तीखा", roman: "Teekha", english: "Spicy", pronunciation: "TEE-kaa", context: "Hot/chilli", speakText: "Teekha" }, { hindi: "खट्टा", roman: "Khatta", english: "Sour", pronunciation: "KHUT-taa", context: "Like lemon", speakText: "Khatta" }, { hindi: "स्वादिष्ट", roman: "Swaadisht", english: "Delicious", pronunciation: "swaa-DISHT", context: "Tasty!", speakText: "Swaadisht" }], funFact: "'Namkeen' also means crunchy savoury snacks!", practice: "Describe food: 'Yeh bahut teekha hai!' or 'Bahut swaadisht!'" },
+      "w7-food-more": { id: "w7-food-more", title: "More Food Words", category: "Food", icon: "🥗", phrases: [{ hindi: "फल", roman: "Phal", english: "Fruit", pronunciation: "ful", context: "General", speakText: "Phal" }, { hindi: "आम", roman: "Aam", english: "Mango", pronunciation: "aam", context: "King of fruits!", speakText: "Aam" }, { hindi: "केला", roman: "Kela", english: "Banana", pronunciation: "KAY-laa", context: "Common fruit", speakText: "Kela" }, { hindi: "मिठाई", roman: "Mithai", english: "Sweets/Dessert", pronunciation: "mi-THAI", context: "Indian sweets", speakText: "Mithai" }, { hindi: "अचार", roman: "Achaar", english: "Pickle", pronunciation: "uh-CHAAR", context: "Spicy preserve", speakText: "Achaar" }], funFact: "Mango is India's national fruit — over 1,000 varieties!", practice: "Ask for fruit: 'Mujhe aam chahiye'!" },
+      "w7-food-requests": { id: "w7-food-requests", title: "Food Requests", category: "Food", icon: "🙋", phrases: [{ hindi: "और चाहिए", roman: "Aur chahiye", english: "Want more", pronunciation: "owr chaa-HI-yay", context: "Asking for more", speakText: "Aur chahiye" }, { hindi: "बस, बहुत हो गया", roman: "Bas, bahut ho gaya", english: "Enough, that's plenty", pronunciation: "bus, ba-HOOT ho GUH-ya", context: "Stop serving!", speakText: "Bas, bahut ho gaya" }, { hindi: "थोड़ा सा", roman: "Thoda sa", english: "A little bit", pronunciation: "TOH-daa saa", context: "Small amount", speakText: "Thoda sa" }, { hindi: "पेट भर गया", roman: "Pet bhar gaya", english: "I'm full", pronunciation: "payt bur GUH-ya", context: "Can't eat more!", speakText: "Pet bhar gaya" }], funFact: "'Bas!' means 'Stop!' or 'Enough!' — useful when relatives keep serving!", practice: "At meals: 'Thoda sa dijiye' and 'Bas, pet bhar gaya'!" },
+      "w7-drinks": { id: "w7-drinks", title: "Drinks", category: "Food", icon: "🥤", phrases: [{ hindi: "पानी", roman: "Paani", english: "Water", pronunciation: "PAA-nee", context: "You know this!", speakText: "Paani" }, { hindi: "चाय", roman: "Chai", english: "Tea", pronunciation: "chaai", context: "You know this!", speakText: "Chai" }, { hindi: "दूध", roman: "Doodh", english: "Milk", pronunciation: "doodh", context: "You know this!", speakText: "Doodh" }, { hindi: "जूस", roman: "Juice", english: "Juice", pronunciation: "joos", context: "Same word!", speakText: "Juice" }, { hindi: "लस्सी", roman: "Lassi", english: "Yogurt drink", pronunciation: "LUS-see", context: "Sweet or salty", speakText: "Lassi" }], funFact: "Lassi is a yogurt drink — 'meethi lassi' is sweet, 'namkeen lassi' is salty!", practice: "Order: 'Mujhe meethi lassi chahiye'!" },
+      "w7-review": { id: "w7-review", title: "Week 7 Review", category: "Review", icon: "⭐", phrases: [{ hindi: "खाना बहुत स्वादिष्ट है", roman: "Khana bahut swaadisht hai", english: "The food is very delicious", pronunciation: "KHAA-naa ba-HOOT swaa-DISHT hay", context: "Big compliment!", speakText: "Khana bahut swaadisht hai" }, { hindi: "मुझे मीठा पसंद है", roman: "Mujhe meetha pasand hai", english: "I like sweets", pronunciation: "MUJ-hay MEE-taa puh-SUND hay", context: "Preference", speakText: "Mujhe meetha pasand hai" }, { hindi: "और रोटी दीजिए", roman: "Aur roti dijiye", english: "Please give more roti", pronunciation: "owr ROH-tee DEE-ji-yay", context: "Polite request", speakText: "Aur roti dijiye" }], funFact: "You can now talk about food, tastes, and meals!", practice: "At your next meal, try to use only Hindi!" },
+      "w8-verbs-sitstand": { id: "w8-verbs-sitstand", title: "Sit, Stand, Wait", category: "Verbs", icon: "🪑", phrases: [{ hindi: "बैठो", roman: "Baitho", english: "Sit (friendly)", pronunciation: "BAYTH-oh", context: "Command", speakText: "Baitho" }, { hindi: "बैठिए", roman: "Baithiye", english: "Please sit (respectful)", pronunciation: "bayth-I-yay", context: "For elders", speakText: "Baithiye" }, { hindi: "खड़े हो जाओ", roman: "Khade ho jao", english: "Stand up", pronunciation: "KHA-day ho JAA-oh", context: "Command", speakText: "Khade ho jao" }, { hindi: "रुको", roman: "Ruko", english: "Wait / Stop", pronunciation: "ROO-koh", context: "Friendly", speakText: "Ruko" }, { hindi: "रुकिए", roman: "Rukiye", english: "Please wait (respectful)", pronunciation: "roo-KI-yay", context: "For elders", speakText: "Rukiye" }], funFact: "Pattern: -o endings are friendly, -iye endings are respectful!", practice: "Offer a seat to an elder: Baithiye!" },
+      "w8-verbs-looksee": { id: "w8-verbs-looksee", title: "Look, See, Listen", category: "Verbs", icon: "👀", phrases: [{ hindi: "देखो", roman: "Dekho", english: "Look / See (friendly)", pronunciation: "DAY-koh", context: "Friendly", speakText: "Dekho" }, { hindi: "देखिए", roman: "Dekhiye", english: "Please look (respectful)", pronunciation: "day-KHI-yay", context: "For elders", speakText: "Dekhiye" }, { hindi: "सुनो", roman: "Suno", english: "Listen (friendly)", pronunciation: "SOO-noh", context: "Friendly", speakText: "Suno" }, { hindi: "सुनिए", roman: "Suniye", english: "Please listen (respectful)", pronunciation: "soo-NI-yay", context: "For elders", speakText: "Suniye" }, { hindi: "यह देखो!", roman: "Yeh dekho!", english: "Look at this!", pronunciation: "yeh DAY-koh", context: "Showing something", speakText: "Yeh dekho" }], funFact: "Suno and Suniye are used to get someones attention!", practice: "Get attention: Suniye, yeh dekhiye!" },
+      "w8-verbs-speakread": { id: "w8-verbs-speakread", title: "Speak, Read, Write", category: "Verbs", icon: "🗣️", phrases: [{ hindi: "बोलो", roman: "Bolo", english: "Speak / Say (friendly)", pronunciation: "BOH-loh", context: "Friendly", speakText: "Bolo" }, { hindi: "बोलिए", roman: "Boliye", english: "Please speak (respectful)", pronunciation: "boh-LI-yay", context: "For elders", speakText: "Boliye" }, { hindi: "पढ़ो", roman: "Padho", english: "Read / Study", pronunciation: "PUH-doh", context: "Both meanings!", speakText: "Padho" }, { hindi: "लिखो", roman: "Likho", english: "Write", pronunciation: "LI-koh", context: "Writing", speakText: "Likho" }, { hindi: "फिर से बोलिए", roman: "Phir se boliye", english: "Please say it again", pronunciation: "fir say boh-LI-yay", context: "Didnt understand", speakText: "Phir se boliye" }], funFact: "Padho means both read and study!", practice: "When you dont understand: Phir se boliye!" },
+      "w8-verbs-dontdo": { id: "w8-verbs-dontdo", title: "Dont Do That!", category: "Verbs", icon: "🚫", phrases: [{ hindi: "मत करो", roman: "Mat karo", english: "Dont do that", pronunciation: "mut KUH-roh", context: "Prohibition", speakText: "Mat karo" }, { hindi: "मत जाओ", roman: "Mat jao", english: "Dont go", pronunciation: "mut JAA-oh", context: "Stay here!", speakText: "Mat jao" }, { hindi: "चिंता मत करो", roman: "Chinta mat karo", english: "Dont worry", pronunciation: "CHIN-taa mut KUH-roh", context: "Reassurance", speakText: "Chinta mat karo" }, { hindi: "ऐसा मत बोलो", roman: "Aisa mat bolo", english: "Dont say that", pronunciation: "AY-saa mut BOH-loh", context: "Disagreement", speakText: "Aisa mat bolo" }], funFact: "Mat before a verb makes it negative!", practice: "Reassure someone: Chinta mat karo, sab theek hai!" },
+      "w8-verbs-doing": { id: "w8-verbs-doing", title: "What Are You Doing?", category: "Verbs", icon: "🤔", phrases: [{ hindi: "क्या कर रहे हो?", roman: "Kya kar rahe ho?", english: "What are you doing? (friendly)", pronunciation: "kyaa kur RAH-hay ho", context: "To friends", speakText: "Kya kar rahe ho" }, { hindi: "क्या कर रहे हैं?", roman: "Kya kar rahe hain?", english: "What are you doing? (respectful)", pronunciation: "kyaa kur RAH-hay hayn", context: "To elders", speakText: "Kya kar rahe hain" }, { hindi: "मैं खाना बना रहा हूँ", roman: "Main khana bana raha hoon", english: "I am cooking (male)", pronunciation: "mayn KHAA-naa buh-NAA RAH-ha hoon", context: "Present continuous", speakText: "Main khana bana raha hoon" }, { hindi: "मैं पढ़ रही हूँ", roman: "Main padh rahi hoon", english: "I am studying (female)", pronunciation: "mayn pudh RAH-hee hoon", context: "Present continuous", speakText: "Main padh rahi hoon" }], funFact: "Raha/rahi/rahe shows something is happening NOW like -ing!", practice: "Answer Kya kar rahe ho? with what youre actually doing!" },
+      "w8-verbs-helping": { id: "w8-verbs-helping", title: "Helping & Asking", category: "Verbs", icon: "🤝", phrases: [{ hindi: "मदद करो", roman: "Madad karo", english: "Help (friendly)", pronunciation: "MUH-dud KUH-roh", context: "Asking for help", speakText: "Madad karo" }, { hindi: "मदद कीजिए", roman: "Madad kijiye", english: "Please help (respectful)", pronunciation: "MUH-dud KEE-ji-yay", context: "Polite request", speakText: "Madad kijiye" }, { hindi: "मुझे मदद चाहिए", roman: "Mujhe madad chahiye", english: "I need help", pronunciation: "MUJ-hay MUH-dud chaa-HI-yay", context: "Requesting help", speakText: "Mujhe madad chahiye" }, { hindi: "क्या मैं मदद कर सकता हूँ?", roman: "Kya main madad kar sakta hoon?", english: "Can I help? (male)", pronunciation: "kyaa mayn MUH-dud kur SUK-taa hoon", context: "Offering help", speakText: "Kya main madad kar sakta hoon" }], funFact: "Sakta/sakti means can or able to!", practice: "Offer help: Kya main madad kar sakta/sakti hoon?" },
+      "w8-review": { id: "w8-review", title: "Week 8 Review", category: "Review", icon: "⭐", phrases: [{ hindi: "यहाँ बैठिए", roman: "Yahan baithiye", english: "Please sit here", pronunciation: "ya-HAAN bayth-I-yay", context: "Offering seat", speakText: "Yahan baithiye" }, { hindi: "चिंता मत करो", roman: "Chinta mat karo", english: "Dont worry", pronunciation: "CHIN-taa mut KUH-roh", context: "Reassurance", speakText: "Chinta mat karo" }, { hindi: "धीरे बोलिए", roman: "Dheere boliye", english: "Please speak slowly", pronunciation: "DEE-ray boh-LI-yay", context: "Language learner!", speakText: "Dheere boliye" }], funFact: "You now know commands, requests, and ongoing actions!", practice: "Use Dheere boliye - your best friend as a learner!" },
+      "w9-past-basic": { id: "w9-past-basic", title: "Past Tense Basics", category: "Grammar", icon: "⏮️", phrases: [{ hindi: "मैं गया/गयी", roman: "Main gaya/gayi", english: "I went (m/f)", pronunciation: "mayn GUH-ya/GUH-yee", context: "Past tense", speakText: "Main gaya" }, { hindi: "मैंने खाया", roman: "Maine khaya", english: "I ate", pronunciation: "MAY-nay KHAA-ya", context: "Past tense", speakText: "Maine khaya" }, { hindi: "मैंने देखा", roman: "Maine dekha", english: "I saw", pronunciation: "MAY-nay DAY-khaa", context: "Past tense", speakText: "Maine dekha" }, { hindi: "मैंने किया", roman: "Maine kiya", english: "I did", pronunciation: "MAY-nay KI-ya", context: "Past tense", speakText: "Maine kiya" }], funFact: "Hindi past tense changes based on the verb AND sometimes gender!", practice: "Describe your day: 'Maine naashta khaya'!" },
+      "w9-past-questions": { id: "w9-past-questions", title: "What Did You Do?", category: "Grammar", icon: "❓", phrases: [{ hindi: "क्या हुआ?", roman: "Kya hua?", english: "What happened?", pronunciation: "kyaa HOO-ah", context: "You know this!", speakText: "Kya hua" }, { hindi: "कहाँ गये थे?", roman: "Kahan gaye the?", english: "Where did you go?", pronunciation: "ka-HAAN GUH-yay thay", context: "About past", speakText: "Kahan gaye the" }, { hindi: "क्या किया?", roman: "Kya kiya?", english: "What did you do?", pronunciation: "kyaa KI-ya", context: "About actions", speakText: "Kya kiya" }, { hindi: "कैसा रहा?", roman: "Kaisa raha?", english: "How was it?", pronunciation: "KAY-saa RAH-ha", context: "About experience", speakText: "Kaisa raha" }], funFact: "'Kaisa raha?' is perfect for asking about trips, meals, movies!", practice: "Ask family: 'Aaj kya kiya?' and 'Kaisa raha?'" },
+      "w9-shopping-basics": { id: "w9-shopping-basics", title: "Shopping Basics", category: "Shopping", icon: "🛍️", phrases: [{ hindi: "कितने का है?", roman: "Kitne ka hai?", english: "How much is it? (masculine)", pronunciation: "KIT-nay kaa hay", context: "Asking price", speakText: "Kitne ka hai" }, { hindi: "कितने की है?", roman: "Kitne ki hai?", english: "How much is it? (feminine)", pronunciation: "KIT-nay kee hay", context: "Asking price", speakText: "Kitne ki hai" }, { hindi: "बहुत महंगा है", roman: "Bahut mahanga hai", english: "It's very expensive", pronunciation: "ba-HOOT muh-HUN-gaa hay", context: "Expensive!", speakText: "Bahut mahanga hai" }, { hindi: "सस्ता है", roman: "Sasta hai", english: "It's cheap", pronunciation: "SUS-taa hay", context: "Affordable", speakText: "Sasta hai" }], funFact: "Bargaining is common in Indian markets! 'Bahut mahanga hai' is your opening move.", practice: "Point at objects: 'Kitne ka hai?' then react with 'Mahanga!' or 'Sasta!'" },
+      "w9-shopping-numbers": { id: "w9-shopping-numbers", title: "Money Numbers", category: "Shopping", icon: "💰", phrases: [{ hindi: "रुपये", roman: "Rupaye", english: "Rupees", pronunciation: "roo-PUH-yay", context: "Indian currency", speakText: "Rupaye" }, { hindi: "सौ", roman: "Sau", english: "Hundred (100)", pronunciation: "sow", context: "100", speakText: "Sau" }, { hindi: "दो सौ", roman: "Do sau", english: "Two hundred (200)", pronunciation: "doh sow", context: "200", speakText: "Do sau" }, { hindi: "पाँच सौ", roman: "Paanch sau", english: "Five hundred (500)", pronunciation: "paanch sow", context: "500", speakText: "Paanch sau" }, { hindi: "हज़ार", roman: "Hazaar", english: "Thousand (1000)", pronunciation: "huh-ZAAR", context: "1000", speakText: "Hazaar" }], funFact: "Common prices: 'Sau rupaye' (₹100), 'Do sau pachaas' (₹250)!", practice: "Practice: 'Sau', 'Do sau', 'Teen sau', up to 'Das sau'!" },
+      "w9-shopping-phrases": { id: "w9-shopping-phrases", title: "Shopping Phrases", category: "Shopping", icon: "🏪", phrases: [{ hindi: "यह दिखाइए", roman: "Yeh dikhaiye", english: "Please show me this", pronunciation: "yeh dik-HAI-yay", context: "Requesting", speakText: "Yeh dikhaiye" }, { hindi: "और कुछ?", roman: "Aur kuch?", english: "Anything else?", pronunciation: "owr kuch", context: "Shopkeeper asks", speakText: "Aur kuch" }, { hindi: "बस इतना ही", roman: "Bas itna hi", english: "That's all", pronunciation: "bus IT-naa hee", context: "Nothing more", speakText: "Bas itna hi" }, { hindi: "पैसे", roman: "Paise", english: "Money / Change", pronunciation: "PAY-say", context: "Cash", speakText: "Paise" }], funFact: "'Aur kuch?' is what shopkeepers always ask. Reply with 'Bas itna hi'!", practice: "Role-play: 'Yeh dikhaiye... Kitne ka hai?... Bas itna hi.'" },
+      "w9-shopping-bargain": { id: "w9-shopping-bargain", title: "Bargaining", category: "Shopping", icon: "🤝", phrases: [{ hindi: "कम कीजिए", roman: "Kam kijiye", english: "Please reduce (the price)", pronunciation: "kum KEE-ji-yay", context: "Bargaining!", speakText: "Kam kijiye" }, { hindi: "सही दाम बताइए", roman: "Sahi daam bataiye", english: "Tell me the real price", pronunciation: "suh-HEE daam buh-TAI-yay", context: "Negotiating", speakText: "Sahi daam bataiye" }, { hindi: "ठीक है, ले लो", roman: "Theek hai, le lo", english: "OK, take it (final offer)", pronunciation: "teek hay, lay loh", context: "Agreeing", speakText: "Theek hai, le lo" }, { hindi: "नहीं चाहिए", roman: "Nahin chahiye", english: "I don't want it", pronunciation: "na-HEEN chaa-HI-yay", context: "Walking away", speakText: "Nahin chahiye" }], funFact: "Walking away saying 'Nahin chahiye' often gets you a better price!", practice: "Practice the bargaining dance: Ask price → 'Bahut mahanga!' → 'Kam kijiye' → Walk away if needed!" },
+      "w9-review": { id: "w9-review", title: "Week 9 Review", category: "Review", icon: "⭐", phrases: [{ hindi: "कल मैं बाज़ार गया", roman: "Kal main bazaar gaya", english: "Yesterday I went to the market", pronunciation: "kul mayn baa-ZAAR GUH-ya", context: "Past tense!", speakText: "Kal main bazaar gaya" }, { hindi: "यह कितने का है? बहुत महंगा!", roman: "Yeh kitne ka hai? Bahut mahanga!", english: "How much? Very expensive!", pronunciation: "yeh KIT-nay kaa hay? ba-HOOT muh-HUN-gaa", context: "Shopping", speakText: "Yeh kitne ka hai? Bahut mahanga!" }, { hindi: "कम कीजिए, सौ रुपये दूँगा", roman: "Kam kijiye, sau rupaye dunga", english: "Please reduce, I'll give 100", pronunciation: "kum KEE-ji-yay, sow roo-PUH-yay DOON-gaa", context: "Bargaining!", speakText: "Kam kijiye, sau rupaye dunga" }], funFact: "You can now talk about the past AND go shopping in Hindi!", practice: "Describe a past shopping trip: 'Main bazaar gaya. Bahut cheezein dekhin!'" },
+      "w10-weather": { id: "w10-weather", title: "Weather", category: "Weather", icon: "🌤️", phrases: [{ hindi: "आज मौसम कैसा है?", roman: "Aaj mausam kaisa hai?", english: "How's the weather today?", pronunciation: "aaj MOW-sum KAY-saa hay", context: "Weather chat", speakText: "Aaj mausam kaisa hai" }, { hindi: "गर्मी है", roman: "Garmi hai", english: "It's hot", pronunciation: "GUR-mee hay", context: "Hot weather", speakText: "Garmi hai" }, { hindi: "सर्दी है", roman: "Sardi hai", english: "It's cold", pronunciation: "SUR-dee hay", context: "Cold weather", speakText: "Sardi hai" }, { hindi: "बारिश हो रही है", roman: "Baarish ho rahi hai", english: "It's raining", pronunciation: "BAA-rish ho RAH-hee hay", context: "Rainy!", speakText: "Baarish ho rahi hai" }, { hindi: "धूप है", roman: "Dhoop hai", english: "It's sunny", pronunciation: "dhoop hay", context: "Sunny", speakText: "Dhoop hai" }], funFact: "'Bahut garmi hai!' (Very hot!) — you'll say this a lot in Indian summer!", practice: "Check the weather and describe it: 'Aaj bahut garmi hai!'" },
+      "w10-body-basic": { id: "w10-body-basic", title: "Body Parts", category: "Body", icon: "🫀", phrases: [{ hindi: "सिर", roman: "Sir", english: "Head", pronunciation: "sir", context: "Body part", speakText: "Sir" }, { hindi: "पेट", roman: "Pet", english: "Stomach", pronunciation: "payt", context: "Body part", speakText: "Pet" }, { hindi: "हाथ", roman: "Haath", english: "Hand", pronunciation: "haath", context: "Body part", speakText: "Haath" }, { hindi: "पैर", roman: "Pair", english: "Foot / Leg", pronunciation: "pyre", context: "Body part", speakText: "Pair" }, { hindi: "आँख", roman: "Aankh", english: "Eye", pronunciation: "aankh", context: "Body part", speakText: "Aankh" }], funFact: "Touching elders' feet ('pair chhuna') is a sign of respect in Indian culture!", practice: "Point to body parts: 'Yeh mera sir hai, yeh mera haath hai!'" },
+      "w10-health": { id: "w10-health", title: "Health & Pain", category: "Health", icon: "🏥", phrases: [{ hindi: "मुझे दर्द हो रहा है", roman: "Mujhe dard ho raha hai", english: "I'm having pain", pronunciation: "MUJ-hay durd ho RAH-ha hay", context: "General pain", speakText: "Mujhe dard ho raha hai" }, { hindi: "सिर में दर्द है", roman: "Sir mein dard hai", english: "I have a headache", pronunciation: "sir mayn durd hay", context: "Headache", speakText: "Sir mein dard hai" }, { hindi: "पेट में दर्द है", roman: "Pet mein dard hai", english: "I have a stomachache", pronunciation: "payt mayn durd hay", context: "Stomachache", speakText: "Pet mein dard hai" }, { hindi: "तबीयत ठीक नहीं है", roman: "Tabiyat theek nahin hai", english: "I'm not feeling well", pronunciation: "tuh-BEE-yut teek na-HEEN hay", context: "Unwell", speakText: "Tabiyat theek nahin hai" }], funFact: "'Tabiyat kaisi hai?' is more specific than 'Kaise ho?'!", practice: "If unwell: 'Tabiyat theek nahin hai, mujhe aaram chahiye'!" },
+      "w10-polite-advanced": { id: "w10-polite-advanced", title: "Advanced Politeness", category: "Conversation", icon: "🙏", phrases: [{ hindi: "आपका बहुत-बहुत शुक्रिया", roman: "Aapka bahut-bahut shukriya", english: "Thank you very very much", pronunciation: "AAP-kaa ba-HOOT ba-HOOT shuk-REE-ya", context: "Big thanks!", speakText: "Aapka bahut bahut shukriya" }, { hindi: "कोई बात नहीं, खुशी हुई", roman: "Koi baat nahin, khushi hui", english: "No problem, it was my pleasure", pronunciation: "koy baat na-HEEN, KHOO-shee HOO-ee", context: "Gracious response", speakText: "Koi baat nahin, khushi hui" }, { hindi: "आप बहुत अच्छे हैं", roman: "Aap bahut acche hain", english: "You are very kind", pronunciation: "aap ba-HOOT uch-CHAY hayn", context: "Compliment", speakText: "Aap bahut acche hain" }, { hindi: "भगवान आपको खुश रखे", roman: "Bhagwan aapko khush rakhe", english: "May God keep you happy", pronunciation: "BHUG-waan AAP-ko khoosh RAKH-ay", context: "Blessing", speakText: "Bhagwan aapko khush rakhe" }], funFact: "Indians often give blessings as thanks. Elders say 'Khush raho' (Stay happy)!", practice: "Thank someone: 'Aapka bahut-bahut shukriya, aap bahut acche hain!'" },
+      "w10-conversations": { id: "w10-conversations", title: "Full Conversations", category: "Conversation", icon: "💬", phrases: [{ hindi: "बताइए, क्या हाल है?", roman: "Bataiye, kya haal hai?", english: "Tell me, how are things?", pronunciation: "buh-TAI-yay, kyaa haal hay", context: "Opening", speakText: "Bataiye, kya haal hai" }, { hindi: "सब कुशल मंगल है", roman: "Sab kushal mangal hai", english: "All is well", pronunciation: "sub KOO-shul MUN-gul hay", context: "Positive response", speakText: "Sab kushal mangal hai" }, { hindi: "घर में सब कैसे हैं?", roman: "Ghar mein sab kaise hain?", english: "How is everyone at home?", pronunciation: "gur mayn sub KAY-say hayn", context: "About family", speakText: "Ghar mein sab kaise hain" }, { hindi: "सब ठीक हैं, आपकी दुआ से", roman: "Sab theek hain, aapki dua se", english: "Everyone is fine, by your blessings", pronunciation: "sub teek hayn, AAP-kee DOO-ah say", context: "Gracious reply", speakText: "Sab theek hain, aapki dua se" }], funFact: "'Aapki dua se' (by your blessings) is a beautiful, humble way to respond!", practice: "Have a full greeting exchange with a relative!" },
+      "w10-future": { id: "w10-future", title: "Future Plans", category: "Grammar", icon: "🔮", phrases: [{ hindi: "मैं आऊँगा/आऊँगी", roman: "Main aaunga/aaungi", english: "I will come (m/f)", pronunciation: "mayn aa-OON-gaa/aa-OON-gee", context: "Future tense", speakText: "Main aaunga" }, { hindi: "कब आओगे?", roman: "Kab aaoge?", english: "When will you come?", pronunciation: "kub AA-oh-gay", context: "You know this!", speakText: "Kab aaoge" }, { hindi: "जल्दी मिलेंगे", roman: "Jaldi milenge", english: "We'll meet soon", pronunciation: "JUL-dee mi-LEN-gay", context: "Goodbye", speakText: "Jaldi milenge" }, { hindi: "इंतज़ार करूँगा/करूँगी", roman: "Intezaar karunga/karungi", english: "I will wait (m/f)", pronunciation: "in-tay-ZAAR kuh-ROON-gaa", context: "Looking forward", speakText: "Intezaar karunga" }], funFact: "'-unga/-ungi' or '-enge' endings show future tense!", practice: "Make plans: 'Main kal aaunga' and 'Hum jaldi milenge'!" },
+      "w10-final60": { id: "w10-final60", title: "60 Days Complete!", category: "Final", icon: "🏆", phrases: [{ hindi: "नमस्ते! आप कैसे हैं? सब कुशल मंगल?", roman: "Namaste! Aap kaise hain? Sab kushal mangal?", english: "Hello! How are you? All well?", pronunciation: "nuh-MUS-tay! aap KAY-say hayn? sub KOO-shul MUN-gul", context: "Full greeting", speakText: "Namaste! Aap kaise hain? Sab kushal mangal?" }, { hindi: "हाँ जी, सब ठीक है। आपकी दुआ से।", roman: "Haan ji, sab theek hai. Aapki dua se.", english: "Yes, all is well. By your blessings.", pronunciation: "haahn jee, sub teek hay. AAP-kee DOO-ah say", context: "Gracious reply", speakText: "Haan ji, sab theek hai. Aapki dua se." }, { hindi: "बहुत अच्छा लगा बात करके। जल्दी मिलेंगे!", roman: "Bahut accha laga baat karke. Jaldi milenge!", english: "Great talking. See you soon!", pronunciation: "ba-HOOT uch-CHAA LUH-gaa baat KUR-kay. JUL-dee mi-LEN-gay", context: "Goodbye", speakText: "Bahut accha laga baat karke. Jaldi milenge!" }], funFact: "You've completed 60 days! You know 200+ phrases covering everything!", practice: "Call a relative in India and have a REAL conversation. You're ready! शाबाश (Shabaash)!" }
     };
-    
-    // ==========================================
-    // COURSE STRUCTURE
-    // This defines the ORDER of lessons
-    // Change this to reorder, add weeks, etc.
-    // ==========================================
-    
+
     const courseStructure = {
       title: "Hindi for Family",
       description: "60 days to confident conversation",
       weeks: [
-        {
-          number: 1,
-          title: "Week 1",
-          subtitle: "Foundations",
-          lessons: [
-            "w1-greetings-hello",
-            "w1-greetings-howareyou", 
-            "w1-manners-thanks",
-            "w1-numbers-1to5",
-            "w1-numbers-6to10",
-            "w1-identity-aboutme",
-            "w1-review"
-          ]
-        },
-        {
-          number: 2,
-          title: "Week 2",
-          subtitle: "Family & Basics",
-          lessons: [
-            "w2-basics-yesno",
-            "w2-family-parents",
-            "w2-family-grandparents",
-            "w2-family-auntsuncles",
-            "w2-expressions-wantlike",
-            "w2-vocab-things",
-            "w2-review"
-          ]
-        },
-        {
-          number: 3,
-          title: "Week 3",
-          subtitle: "Actions & Places",
-          lessons: [
-            "w3-actions-comego",
-            "w3-directions-herethere",
-            "w3-vocab-places1",
-            "w3-vocab-places2",
-            "w3-needs-hungrythirsty",
-            "w3-actions-givetake",
-            "w3-review"
-          ]
-        },
-        {
-          number: 4,
-          title: "Week 4",
-          subtitle: "Questions & Time",
-          lessons: [
-            "w4-questions-whatwhy",
-            "w4-questions-whenwho",
-            "w4-time-words",
-            "w4-conversation-smalltalk",
-            "w4-conversation-phone",
-            "w4-emotions-feelings",
-            "w4-review"
-          ]
-        },
-        {
-          number: 5,
-          title: "Week 5",
-          subtitle: "Putting It Together",
-          lessons: [
-            "w5-phrases-useful",
-            "w5-final"
-          ]
-        },
-        {
-          number: 6,
-          title: "Week 6",
-          subtitle: "Numbers & Descriptions",
-          lessons: [
-            "w6-numbers-11to15",
-            "w6-numbers-16to20",
-            "w6-descriptions-bigsmall",
-            "w6-descriptions-goodbad",
-            "w6-descriptions-hotcold",
-            "w6-colours-basic",
-            "w6-review"
-          ]
-        },
-        {
-          number: 7,
-          title: "Week 7",
-          subtitle: "Food & Tastes",
-          lessons: [
-            "w7-food-meals",
-            "w7-food-dishes",
-            "w7-food-tastes",
-            "w7-food-more",
-            "w7-food-requests",
-            "w7-drinks",
-            "w7-review"
-          ]
-        },
-        {
-          number: 8,
-          title: "Week 8",
-          subtitle: "Verbs & Actions",
-          lessons: [
-            "w8-verbs-sitstand",
-            "w8-verbs-looksee",
-            "w8-verbs-speakread",
-            "w8-verbs-dontdo",
-            "w8-verbs-doing",
-            "w8-verbs-helping",
-            "w8-review"
-          ]
-        },
-        {
-          number: 9,
-          title: "Week 9",
-          subtitle: "Past Tense & Shopping",
-          lessons: [
-            "w9-past-basic",
-            "w9-past-questions",
-            "w9-shopping-basics",
-            "w9-shopping-numbers",
-            "w9-shopping-phrases",
-            "w9-shopping-bargain",
-            "w9-review"
-          ]
-        },
-        {
-          number: 10,
-          title: "Week 10",
-          subtitle: "Weather, Health & Wrap-up",
-          lessons: [
-            "w10-weather",
-            "w10-body-basic",
-            "w10-health",
-            "w10-polite-advanced",
-            "w10-conversations",
-            "w10-future",
-            "w10-final60"
-          ]
-        }
+        { number: 1, title: "Week 1", subtitle: "Foundations", lessons: ["w1-greetings-hello", "w1-greetings-howareyou", "w1-manners-thanks", "w1-numbers-1to5", "w1-numbers-6to10", "w1-identity-aboutme", "w1-review"] },
+        { number: 2, title: "Week 2", subtitle: "Family & Basics", lessons: ["w2-basics-yesno", "w2-family-parents", "w2-family-grandparents", "w2-family-auntsuncles", "w2-expressions-wantlike", "w2-vocab-things", "w2-review"] },
+        { number: 3, title: "Week 3", subtitle: "Actions & Places", lessons: ["w3-actions-comego", "w3-directions-herethere", "w3-vocab-places1", "w3-vocab-places2", "w3-needs-hungrythirsty", "w3-actions-givetake", "w3-review"] },
+        { number: 4, title: "Week 4", subtitle: "Questions & Time", lessons: ["w4-questions-whatwhy", "w4-questions-whenwho", "w4-time-words", "w4-conversation-smalltalk", "w4-conversation-phone", "w4-emotions-feelings", "w4-review"] },
+        { number: 5, title: "Week 5", subtitle: "Putting It Together", lessons: ["w5-phrases-useful", "w5-final"] },
+        { number: 6, title: "Week 6", subtitle: "Numbers & Descriptions", lessons: ["w6-numbers-11to15", "w6-numbers-16to20", "w6-descriptions-bigsmall", "w6-descriptions-goodbad", "w6-descriptions-hotcold", "w6-colours-basic", "w6-review"] },
+        { number: 7, title: "Week 7", subtitle: "Food & Tastes", lessons: ["w7-food-meals", "w7-food-dishes", "w7-food-tastes", "w7-food-more", "w7-food-requests", "w7-drinks", "w7-review"] },
+        { number: 8, title: "Week 8", subtitle: "Verbs & Actions", lessons: ["w8-verbs-sitstand", "w8-verbs-looksee", "w8-verbs-speakread", "w8-verbs-dontdo", "w8-verbs-doing", "w8-verbs-helping", "w8-review"] },
+        { number: 9, title: "Week 9", subtitle: "Past Tense & Shopping", lessons: ["w9-past-basic", "w9-past-questions", "w9-shopping-basics", "w9-shopping-numbers", "w9-shopping-phrases", "w9-shopping-bargain", "w9-review"] },
+        { number: 10, title: "Week 10", subtitle: "Weather, Health & Wrap-up", lessons: ["w10-weather", "w10-body-basic", "w10-health", "w10-polite-advanced", "w10-conversations", "w10-future", "w10-final60"] }
       ]
     };
-    
-    // ==========================================
-    // HELPER: Get flat list of all lesson IDs in order
-    // ==========================================
-    
+
     function getAllLessonIds() {
       const ids = [];
-      courseStructure.weeks.forEach(week => {
-        week.lessons.forEach(lessonId => {
-          ids.push(lessonId);
-        });
-      });
+      courseStructure.weeks.forEach(week => { week.lessons.forEach(id => ids.push(id)); });
       return ids;
     }
-    
-    function getTotalLessons() {
-      return getAllLessonIds().length;
-    }
-    
-    function getLessonIndex(lessonId) {
-      return getAllLessonIds().indexOf(lessonId);
-    }
-    
+    function getTotalLessons() { return getAllLessonIds().length; }
+    function getLessonIndex(lessonId) { return getAllLessonIds().indexOf(lessonId); }
     function getPreviousLessonId(lessonId) {
       const allIds = getAllLessonIds();
       const index = allIds.indexOf(lessonId);
-      if (index > 0) {
-        return allIds[index - 1];
-      }
-      return null;
+      return index > 0 ? allIds[index - 1] : null;
     }
-    
-    // ==========================================
-    // APP STATE
-    // ==========================================
-    
+
     let state = {
       currentView: 'home',
       currentWeek: 1,
       currentLessonId: null,
-      completedLessons: [], // Array of lesson IDs
-      quizState: {
-        questions: [],
-        currentQuestion: 0,
-        score: 0,
-        answered: false,
-        selectedAnswer: null,
-        showResult: false
-      }
+      completedLessons: [],
+      quizState: { questions: [], currentQuestion: 0, score: 0, answered: false, selectedAnswer: null, showResult: false }
     };
 
-    // ==========================================
-    // STORAGE - with migration support
-    // ==========================================
-    
     function saveProgress() {
       try {
-        const data = {
-          version: COURSE_VERSION,
-          completedLessons: state.completedLessons,
-          savedAt: new Date().toISOString()
-        };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      } catch (e) {
-        console.log('Could not save progress:', e);
-      }
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: COURSE_VERSION, completedLessons: state.completedLessons, savedAt: new Date().toISOString() }));
+      } catch (e) { console.log('Could not save:', e); }
     }
 
     function loadProgress() {
@@ -1981,74 +947,34 @@
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) {
           const data = JSON.parse(saved);
-          
-          // Handle old format (day numbers) - migrate to IDs
           if (data.completedDays && !data.completedLessons) {
-            console.log('Migrating from old format...');
-            state.completedLessons = migrateFromDayNumbers(data.completedDays);
-            saveProgress(); // Save in new format
+            const allIds = getAllLessonIds();
+            state.completedLessons = data.completedDays.map(d => allIds[d-1]).filter(Boolean);
+            saveProgress();
           } else if (data.completedLessons) {
-            // Filter out any lesson IDs that no longer exist
             state.completedLessons = data.completedLessons.filter(id => lessonDatabase[id]);
           }
         }
-      } catch (e) {
-        console.log('Could not load progress:', e);
-      }
-    }
-    
-    // Migration helper: convert old day numbers to lesson IDs
-    function migrateFromDayNumbers(dayNumbers) {
-      const allIds = getAllLessonIds();
-      const lessonIds = [];
-      
-      dayNumbers.forEach(dayNum => {
-        // Day numbers were 1-indexed, array is 0-indexed
-        const index = dayNum - 1;
-        if (index >= 0 && index < allIds.length) {
-          lessonIds.push(allIds[index]);
-        }
-      });
-      
-      return lessonIds;
+      } catch (e) { console.log('Could not load:', e); }
     }
 
-    // ==========================================
-    // TEXT TO SPEECH
-    // ==========================================
-    
     function speak(text) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'hi-IN';
         utterance.rate = 0.8;
-        
         const voices = window.speechSynthesis.getVoices();
         const hindiVoice = voices.find(v => v.lang.includes('hi'));
-        if (hindiVoice) {
-          utterance.voice = hindiVoice;
-        }
-        
+        if (hindiVoice) utterance.voice = hindiVoice;
         window.speechSynthesis.speak(utterance);
       }
     }
+    if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices(); }
 
-    // Load voices
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.onvoiceschanged = () => {
-        window.speechSynthesis.getVoices();
-      };
-    }
-
-    // ==========================================
-    // RENDER FUNCTIONS
-    // ==========================================
-    
     function render() {
       updateProgress();
       renderWeekTabs();
-      
       if (state.currentView === 'home') {
         document.getElementById('homeView').classList.remove('hidden');
         document.getElementById('lessonView').classList.remove('active');
@@ -2058,305 +984,146 @@
         document.getElementById('lessonView').classList.add('active');
         renderLesson();
       }
-      
-      // Update tagline and version
       document.getElementById('tagline').textContent = courseStructure.description;
-      document.getElementById('versionInfo').textContent = `v${COURSE_VERSION} • ${getTotalLessons()} lessons`;
+      document.getElementById('versionInfo').textContent = 'v' + COURSE_VERSION + ' • ' + getTotalLessons() + ' lessons';
+      
+      // Hide scroll hint if Week 5+ is visible
+      const hint = document.getElementById('scrollHint');
+      if (state.currentWeek >= 6) hint.style.display = 'none';
+      else hint.style.display = 'block';
     }
 
     function updateProgress() {
       const completed = state.completedLessons.length;
       const total = getTotalLessons();
-      const percent = (completed / total) * 100;
-      
-      document.getElementById('progressStats').textContent = `${completed}/${total} days`;
-      document.getElementById('progressFill').style.width = `${percent}%`;
+      document.getElementById('progressStats').textContent = completed + '/' + total + ' days';
+      document.getElementById('progressFill').style.width = ((completed / total) * 100) + '%';
     }
-    
+
     function renderWeekTabs() {
-      const tabsContainer = document.getElementById('weekTabs');
+      const container = document.getElementById('weekTabs');
       let html = '';
-      
       courseStructure.weeks.forEach(week => {
-        const isActive = week.number === state.currentWeek;
-        html += `
-          <button class="week-tab ${isActive ? 'active' : ''}" 
-                  data-week="${week.number}"
-                  onclick="switchWeek(${week.number})">
-            ${week.title}
-          </button>
-        `;
+        html += '<button class="week-tab ' + (week.number === state.currentWeek ? 'active' : '') + '" onclick="switchWeek(' + week.number + ')">' + week.title + '</button>';
       });
-      
-      tabsContainer.innerHTML = html;
+      container.innerHTML = html;
     }
 
     function renderDaysGrid() {
       const grid = document.getElementById('daysGrid');
       const currentWeekData = courseStructure.weeks.find(w => w.number === state.currentWeek);
-      
-      if (!currentWeekData) {
-        grid.innerHTML = '<p>Week not found</p>';
-        return;
-      }
-      
+      if (!currentWeekData) { grid.innerHTML = '<p>Week not found</p>'; return; }
       let html = '';
-      
-      currentWeekData.lessons.forEach((lessonId, indexInWeek) => {
+      currentWeekData.lessons.forEach(lessonId => {
         const lesson = lessonDatabase[lessonId];
         if (!lesson) return;
-        
-        const globalIndex = getLessonIndex(lessonId);
-        const dayNumber = globalIndex + 1;
-        
+        const dayNumber = getLessonIndex(lessonId) + 1;
         const isCompleted = state.completedLessons.includes(lessonId);
         const previousLessonId = getPreviousLessonId(lessonId);
         const previousCompleted = !previousLessonId || state.completedLessons.includes(previousLessonId);
         const isLocked = !isCompleted && !previousCompleted;
         const isCurrent = !isLocked && !isCompleted;
-        
-        html += `
-          <div class="day-card ${isCompleted ? 'completed' : ''} ${isLocked ? 'locked' : ''}" 
-               data-lesson-id="${lessonId}"
-               onclick="${isLocked ? '' : `openLesson('${lessonId}')`}">
-            <div class="day-icon">${lesson.icon}</div>
-            <div class="day-info">
-              <div class="day-number">Day ${dayNumber}</div>
-              <div class="day-title">${lesson.title}</div>
-            </div>
-            <div class="day-status ${isCompleted ? 'completed' : ''} ${isCurrent ? 'current' : ''} ${isLocked ? 'locked' : ''}">
-              ${isCompleted ? '✓' : (isCurrent ? '→' : '🔒')}
-            </div>
-          </div>
-        `;
+        html += '<div class="day-card ' + (isCompleted ? 'completed' : '') + ' ' + (isLocked ? 'locked' : '') + '" ' + (isLocked ? '' : 'onclick="openLesson(\'' + lessonId + '\')"') + '>' +
+          '<div class="day-icon">' + lesson.icon + '</div>' +
+          '<div class="day-info"><div class="day-number">Day ' + dayNumber + '</div><div class="day-title">' + lesson.title + '</div></div>' +
+          '<div class="day-status ' + (isCompleted ? 'completed' : '') + ' ' + (isCurrent ? 'current' : '') + ' ' + (isLocked ? 'locked' : '') + '">' + (isCompleted ? '✓' : (isCurrent ? '→' : '🔒')) + '</div></div>';
       });
-      
       grid.innerHTML = html;
     }
 
     function renderLesson() {
       const lesson = lessonDatabase[state.currentLessonId];
       if (!lesson) return;
-      
       document.getElementById('lessonIcon').textContent = lesson.icon;
       document.getElementById('lessonTitle').textContent = lesson.title;
       document.getElementById('lessonCategory').textContent = lesson.category;
       document.getElementById('funFactText').textContent = lesson.funFact;
       document.getElementById('practiceText').textContent = lesson.practice;
-      
-      // Render phrases
       let phrasesHtml = '';
-      lesson.phrases.forEach((phrase, index) => {
+      lesson.phrases.forEach(phrase => {
         const speakText = phrase.speakText.replace(/'/g, "\\'");
-        phrasesHtml += `
-          <div class="phrase-card" onclick="speak('${speakText}')">
-            <div class="phrase-main">
-              <div>
-                <div class="phrase-hindi hindi">${phrase.hindi}</div>
-                <div class="phrase-roman">${phrase.roman}</div>
-              </div>
-              <button class="phrase-speak" onclick="event.stopPropagation(); speak('${speakText}')">
-                🔊
-              </button>
-            </div>
-            <div class="phrase-english">${phrase.english}</div>
-            <div class="phrase-meta">
-              <span class="phrase-pronunciation">${phrase.pronunciation}</span>
-              <span class="phrase-context">${phrase.context}</span>
-            </div>
-          </div>
-        `;
+        phrasesHtml += '<div class="phrase-card" onclick="speak(\'' + speakText + '\')"><div class="phrase-main"><div><div class="phrase-hindi hindi">' + phrase.hindi + '</div><div class="phrase-roman">' + phrase.roman + '</div></div><button class="phrase-speak" onclick="event.stopPropagation(); speak(\'' + speakText + '\')">🔊</button></div><div class="phrase-english">' + phrase.english + '</div><div class="phrase-meta"><span class="phrase-pronunciation">' + phrase.pronunciation + '</span><span class="phrase-context">' + phrase.context + '</span></div></div>';
       });
       document.getElementById('phrasesList').innerHTML = phrasesHtml;
-      
-      // Reset quiz state
       resetQuiz();
-      
-      // Show learn tab by default
       switchTab('learn');
     }
 
-    // ==========================================
-    // QUIZ SYSTEM
-    // ==========================================
-    
     function generateQuiz() {
       const lesson = lessonDatabase[state.currentLessonId];
       if (!lesson) return [];
-      
       const questions = [];
       const phrases = [...lesson.phrases];
-      
-      // Generate questions (up to 4)
       const numQuestions = Math.min(4, phrases.length);
-      
       for (let i = 0; i < numQuestions; i++) {
         const phrase = phrases[i];
         const isHindiToEnglish = Math.random() > 0.5;
-        
-        // Get wrong answers from other phrases
         const otherPhrases = phrases.filter((_, idx) => idx !== i);
-        const wrongAnswers = otherPhrases
-          .slice(0, 3)
-          .map(p => isHindiToEnglish ? p.english : p.roman);
-        
-        // Add generic wrong answers if needed
-        const genericWrong = isHindiToEnglish 
-          ? ['Good morning', 'Thank you', 'Goodbye', 'I am fine', 'Where is it?', 'Please help', 'See you later']
-          : ['Namaste', 'Shukriya', 'Theek hai', 'Bahut accha', 'Kya hua', 'Chalo', 'Paani'];
-        
+        const wrongAnswers = otherPhrases.slice(0, 3).map(p => isHindiToEnglish ? p.english : p.roman);
+        const genericWrong = isHindiToEnglish ? ['Good morning', 'Thank you', 'Goodbye', 'I am fine', 'Where is it?'] : ['Namaste', 'Shukriya', 'Theek hai', 'Bahut accha', 'Kya hua'];
         while (wrongAnswers.length < 3) {
           const wrong = genericWrong[Math.floor(Math.random() * genericWrong.length)];
-          if (!wrongAnswers.includes(wrong) && wrong !== (isHindiToEnglish ? phrase.english : phrase.roman)) {
-            wrongAnswers.push(wrong);
-          }
+          if (!wrongAnswers.includes(wrong) && wrong !== (isHindiToEnglish ? phrase.english : phrase.roman)) wrongAnswers.push(wrong);
         }
-        
         const correctAnswer = isHindiToEnglish ? phrase.english : phrase.roman;
         const allAnswers = [correctAnswer, ...wrongAnswers.slice(0, 3)].sort(() => Math.random() - 0.5);
-        
-        questions.push({
-          question: isHindiToEnglish ? phrase.roman : phrase.english,
-          prompt: isHindiToEnglish ? 'What does this mean?' : 'How do you say this in Hindi?',
-          options: allAnswers,
-          correct: correctAnswer,
-          hindi: phrase.hindi,
-          speakText: phrase.speakText
-        });
+        questions.push({ question: isHindiToEnglish ? phrase.roman : phrase.english, prompt: isHindiToEnglish ? 'What does this mean?' : 'How do you say this in Hindi?', options: allAnswers, correct: correctAnswer, hindi: phrase.hindi, speakText: phrase.speakText });
       }
-      
       return questions;
     }
 
-    function resetQuiz() {
-      state.quizState = {
-        questions: generateQuiz(),
-        currentQuestion: 0,
-        score: 0,
-        answered: false,
-        selectedAnswer: null,
-        showResult: false
-      };
-    }
+    function resetQuiz() { state.quizState = { questions: generateQuiz(), currentQuestion: 0, score: 0, answered: false, selectedAnswer: null, showResult: false }; }
 
     function renderQuiz() {
       const { questions, currentQuestion, score, answered, selectedAnswer, showResult } = state.quizState;
       const quizContent = document.getElementById('quizContent');
       const quizProgress = document.getElementById('quizProgress');
-      
-      // Render progress dots
       let progressHtml = '';
       for (let i = 0; i < questions.length; i++) {
-        let dotClass = '';
-        if (i < currentQuestion) dotClass = 'answered';
-        else if (i === currentQuestion && !showResult) dotClass = 'current';
-        else if (showResult) dotClass = 'answered';
-        progressHtml += `<div class="quiz-dot ${dotClass}"></div>`;
+        let dotClass = i < currentQuestion ? 'answered' : (i === currentQuestion && !showResult ? 'current' : (showResult ? 'answered' : ''));
+        progressHtml += '<div class="quiz-dot ' + dotClass + '"></div>';
       }
       quizProgress.innerHTML = progressHtml;
-      
-      // Show result or question
       if (showResult) {
         const percent = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
-        let message = '';
-        if (percent === 100) message = 'Perfect! Bahut badhiya! 🌟';
-        else if (percent >= 75) message = 'Great job! Keep it up!';
-        else if (percent >= 50) message = 'Good effort! Practice makes perfect!';
-        else message = 'Keep practicing! You\'ll get there!';
-        
+        let message = percent === 100 ? 'Perfect! Bahut badhiya! 🌟' : percent >= 75 ? 'Great job! Keep it up!' : percent >= 50 ? 'Good effort! Practice more!' : 'Keep practicing!';
         const dayNumber = getLessonIndex(state.currentLessonId) + 1;
-        
-        quizContent.innerHTML = `
-          <div class="quiz-result">
-            <div class="quiz-score">${score}/${questions.length}</div>
-            <p class="quiz-message">${message}</p>
-          </div>
-          <button class="btn btn-primary" onclick="completeLesson()">
-            Complete Day ${dayNumber} ✓
-          </button>
-          <button class="btn btn-secondary" style="margin-top: 10px" onclick="retryQuiz()">
-            Try Again
-          </button>
-        `;
+        quizContent.innerHTML = '<div class="quiz-result"><div class="quiz-score">' + score + '/' + questions.length + '</div><p class="quiz-message">' + message + '</p></div><button class="btn btn-primary" onclick="completeLesson()">Complete Day ' + dayNumber + ' ✓</button><button class="btn btn-secondary" style="margin-top: 10px" onclick="retryQuiz()">Try Again</button>';
         return;
       }
-      
       if (questions.length === 0) {
-        quizContent.innerHTML = `
-          <p style="text-align: center; color: var(--text-secondary);">No quiz for this lesson.</p>
-          <button class="btn btn-primary" style="margin-top: 20px" onclick="completeLesson()">
-            Complete Lesson ✓
-          </button>
-        `;
+        quizContent.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No quiz for this lesson.</p><button class="btn btn-primary" style="margin-top: 20px" onclick="completeLesson()">Complete Lesson ✓</button>';
         return;
       }
-      
       const q = questions[currentQuestion];
       if (!q) return;
-      
       let optionsHtml = '';
-      q.options.forEach((option) => {
-        let optionClass = '';
-        if (answered) {
-          if (option === q.correct) optionClass = 'correct';
-          else if (option === selectedAnswer) optionClass = 'incorrect';
-        } else if (option === selectedAnswer) {
-          optionClass = 'selected';
-        }
+      q.options.forEach(option => {
+        let optionClass = answered ? (option === q.correct ? 'correct' : (option === selectedAnswer ? 'incorrect' : '')) : (option === selectedAnswer ? 'selected' : '');
         const escapedOption = option.replace(/'/g, "\\'");
-        optionsHtml += `
-          <button class="quiz-option ${optionClass}" 
-                  onclick="selectAnswer('${escapedOption}')"
-                  ${answered ? 'disabled' : ''}>
-            ${option}
-          </button>
-        `;
+        optionsHtml += '<button class="quiz-option ' + optionClass + '" onclick="selectAnswer(\'' + escapedOption + '\')" ' + (answered ? 'disabled' : '') + '>' + option + '</button>';
       });
-      
-      quizContent.innerHTML = `
-        <div class="quiz-question">${q.question}</div>
-        <p class="quiz-prompt">${q.prompt}</p>
-        <div class="quiz-options">${optionsHtml}</div>
-        ${answered ? `
-          <button class="btn btn-primary" style="margin-top: 20px" onclick="nextQuestion()">
-            ${currentQuestion < questions.length - 1 ? 'Next Question →' : 'See Results'}
-          </button>
-        ` : ''}
-      `;
+      quizContent.innerHTML = '<div class="quiz-question">' + q.question + '</div><p class="quiz-prompt">' + q.prompt + '</p><div class="quiz-options">' + optionsHtml + '</div>' + (answered ? '<button class="btn btn-primary" style="margin-top: 20px" onclick="nextQuestion()">' + (currentQuestion < questions.length - 1 ? 'Next Question →' : 'See Results') + '</button>' : '');
     }
 
     function selectAnswer(answer) {
       if (state.quizState.answered) return;
-      
       state.quizState.selectedAnswer = answer;
       state.quizState.answered = true;
-      
-      const q = state.quizState.questions[state.quizState.currentQuestion];
-      if (answer === q.correct) {
-        state.quizState.score++;
-      }
-      
+      if (answer === state.quizState.questions[state.quizState.currentQuestion].correct) state.quizState.score++;
       renderQuiz();
     }
 
     function nextQuestion() {
-      const { questions, currentQuestion } = state.quizState;
-      
-      if (currentQuestion < questions.length - 1) {
+      if (state.quizState.currentQuestion < state.quizState.questions.length - 1) {
         state.quizState.currentQuestion++;
         state.quizState.answered = false;
         state.quizState.selectedAnswer = null;
-      } else {
-        state.quizState.showResult = true;
-      }
-      
+      } else { state.quizState.showResult = true; }
       renderQuiz();
     }
 
-    function retryQuiz() {
-      resetQuiz();
-      renderQuiz();
-    }
+    function retryQuiz() { resetQuiz(); renderQuiz(); }
 
     function completeLesson() {
       if (!state.completedLessons.includes(state.currentLessonId)) {
@@ -2366,69 +1133,29 @@
       goHome();
     }
 
-    // ==========================================
-    // NAVIGATION
-    // ==========================================
-    
     function openLesson(lessonId) {
       if (!lessonDatabase[lessonId]) return;
-      
       state.currentLessonId = lessonId;
       state.currentView = 'lesson';
       render();
-      
-      // Scroll to top
       window.scrollTo(0, 0);
     }
 
-    function goHome() {
-      state.currentView = 'home';
-      state.currentLessonId = null;
-      render();
-    }
+    function goHome() { state.currentView = 'home'; state.currentLessonId = null; render(); }
 
     function switchTab(tabName) {
-      document.querySelectorAll('.lesson-tab').forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.tab === tabName);
-      });
-      
-      document.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active');
-      });
-      
-      if (tabName === 'learn') {
-        document.getElementById('learnTab').classList.add('active');
-      } else {
-        document.getElementById('quizTab').classList.add('active');
-        renderQuiz();
-      }
+      document.querySelectorAll('.lesson-tab').forEach(tab => { tab.classList.toggle('active', tab.dataset.tab === tabName); });
+      document.querySelectorAll('.tab-content').forEach(content => { content.classList.remove('active'); });
+      if (tabName === 'learn') document.getElementById('learnTab').classList.add('active');
+      else { document.getElementById('quizTab').classList.add('active'); renderQuiz(); }
     }
 
-    function switchWeek(weekNumber) {
-      state.currentWeek = weekNumber;
-      render();
-    }
+    function switchWeek(weekNumber) { state.currentWeek = weekNumber; render(); }
 
-    // ==========================================
-    // EVENT LISTENERS
-    // ==========================================
-    
     document.getElementById('backBtn').addEventListener('click', goHome);
-    
-    document.getElementById('startQuizBtn').addEventListener('click', () => {
-      switchTab('quiz');
-    });
-    
-    document.querySelectorAll('.lesson-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        switchTab(tab.dataset.tab);
-      });
-    });
+    document.getElementById('startQuizBtn').addEventListener('click', () => switchTab('quiz'));
+    document.querySelectorAll('.lesson-tab').forEach(tab => { tab.addEventListener('click', () => switchTab(tab.dataset.tab)); });
 
-    // ==========================================
-    // INIT
-    // ==========================================
-    
     loadProgress();
     render();
   </script>
