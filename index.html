@@ -827,7 +827,7 @@
   </div>
 
   <script>
-    const COURSE_VERSION = "2.2.0";
+    const COURSE_VERSION = "2.3.0";
     const STORAGE_KEY = "hindiFamilyCourse";
     
     const lessonDatabase = {
@@ -1021,12 +1021,12 @@
         const isCompleted = state.completedLessons.includes(lessonId);
         const previousLessonId = getPreviousLessonId(lessonId);
         const previousCompleted = !previousLessonId || state.completedLessons.includes(previousLessonId);
-        const isLocked = !isCompleted && !previousCompleted;
-        const isCurrent = !isLocked && !isCompleted;
-        html += '<div class="day-card ' + (isCompleted ? 'completed' : '') + ' ' + (isLocked ? 'locked' : '') + '" ' + (isLocked ? '' : 'onclick="openLesson(\'' + lessonId + '\')"') + '>' +
+        // All lessons unlocked - no sequential requirement
+        const isCurrent = !isCompleted;
+        html += '<div class="day-card ' + (isCompleted ? 'completed' : '') + '" onclick="openLesson(\'' + lessonId + '\')">' +
           '<div class="day-icon">' + lesson.icon + '</div>' +
           '<div class="day-info"><div class="day-number">Day ' + dayNumber + '</div><div class="day-title">' + lesson.title + '</div></div>' +
-          '<div class="day-status ' + (isCompleted ? 'completed' : '') + ' ' + (isCurrent ? 'current' : '') + ' ' + (isLocked ? 'locked' : '') + '">' + (isCompleted ? '✓' : (isCurrent ? '→' : '🔒')) + '</div></div>';
+          '<div class="day-status ' + (isCompleted ? 'completed' : '') + ' ' + (isCurrent ? 'current' : '') + '">' + (isCompleted ? '✓' : '→') + '</div></div>';
       });
       grid.innerHTML = html;
     }
@@ -1041,8 +1041,9 @@
       document.getElementById('practiceText').textContent = lesson.practice;
       let phrasesHtml = '';
       lesson.phrases.forEach(phrase => {
-        const speakText = phrase.speakText.replace(/'/g, "\\'");
-        phrasesHtml += '<div class="phrase-card" onclick="speak(\'' + speakText + '\')"><div class="phrase-main"><div><div class="phrase-hindi hindi">' + phrase.hindi + '</div><div class="phrase-roman">' + phrase.roman + '</div></div><button class="phrase-speak" onclick="event.stopPropagation(); speak(\'' + speakText + '\')">🔊</button></div><div class="phrase-english">' + phrase.english + '</div><div class="phrase-meta"><span class="phrase-pronunciation">' + phrase.pronunciation + '</span><span class="phrase-context">' + phrase.context + '</span></div></div>';
+        // Use Hindi script for speech synthesis (works better than romanized)
+        const hindiText = phrase.hindi.replace(/'/g, "\\'");
+        phrasesHtml += '<div class="phrase-card" onclick="speak(\'' + hindiText + '\')"><div class="phrase-main"><div><div class="phrase-hindi hindi">' + phrase.hindi + '</div><div class="phrase-roman">' + phrase.roman + '</div></div><button class="phrase-speak" onclick="event.stopPropagation(); speak(\'' + hindiText + '\')">🔊</button></div><div class="phrase-english">' + phrase.english + '</div><div class="phrase-meta"><span class="phrase-pronunciation">' + phrase.pronunciation + '</span><span class="phrase-context">' + phrase.context + '</span></div></div>';
       });
       document.getElementById('phrasesList').innerHTML = phrasesHtml;
       resetQuiz();
